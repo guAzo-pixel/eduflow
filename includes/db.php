@@ -1,9 +1,9 @@
 <?php
 
-$host = 'smr_db';
-$dbname = 'centro_educativo';
-$username = 'admin_centro';
-$password = 'password_segura';
+$host = getenv('DB_HOST');
+$dbname = getenv('DB_NAME');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASS');
 
 try {
     /* Le decimos a PDO (embajador) que base de datos utilizamos, chanset es para ñ y tildes */
