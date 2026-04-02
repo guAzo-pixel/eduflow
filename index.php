@@ -8,7 +8,7 @@ include 'includes/db.php';
     <h2>Usuarios registrados</h2>
     <ul>
         <?php
-        if ($roluser == 'admin'){
+        if ($rol === "admin"){
         /*Hacemos la consulta */
         $sql = "SELECT * FROM Users";
 

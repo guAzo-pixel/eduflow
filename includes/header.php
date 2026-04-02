@@ -1,5 +1,8 @@
 <?php 
-$roluser = 'admin'; 
+session_start(); 
+
+/*Comprobamos si "$_SESSION" existe si no asignamos otro valor */
+$rol = $_SESSION['user_rol'] ?? 'invitado'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,22 +13,21 @@ $roluser = 'admin';
 </head>
 <body>
 <nav>
-    
-    <?php if ($roluser == 'admin'): ?>
+    <?php if ($rol === "admin"): ?>
         <ul>
             <li><a>Inicio</a></li>
             <li><a>Crear/Modificar clases</a></li>
             <li><a>Matricular alumnos</a></li>
             <li><a>Crear/Modificar base de datos Usuarios</a></li>
         </ul>
-    <?php elseif ($roluser == 'teacher'): ?>
+    <?php elseif ($rol === "teacher"): ?>
         <ul>
             <li><a>Inicio</a></li>
             <li><a>Mis Clases</a></li>
             <li><a>Mis Alumnos</a></li>
             <li><a>Correciones</a></li>
         </ul>
-    <?php elseif ($roluser == 'students'): ?>
+    <?php elseif ($rol === "student"): ?>
         <ul>
             <li><a>Inicio</a></li>
             <li><a>Mis Clases</a></li>
