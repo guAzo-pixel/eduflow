@@ -40,7 +40,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
             <li><a>Sobre Nosotros</a></li>
             <li><a>¿Como funciona?</a></li>
             <li><a>Nustros clientes</a></li>
-            <li><a>Inicia Sesion</a></li>
+            <li><a href="../login.php">Inicia Sesion</a></li>
         </ul>
     <?php endif; ?>
 </nav>
