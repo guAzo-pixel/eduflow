@@ -19,6 +19,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
             <li><a>Crear/Modificar clases</a></li>
             <li><a>Matricular alumnos</a></li>
             <li><a>Crear/Modificar base de datos Usuarios</a></li>
+            <li><a href="../logout.php">Cerrar sesión</a></li>
         </ul>
     <?php elseif ($rol === "teacher"): ?>
         <ul>
@@ -26,6 +27,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
             <li><a>Mis Clases</a></li>
             <li><a>Mis Alumnos</a></li>
             <li><a>Correciones</a></li>
+            <li><a href="../logout.php">Cerrar sesión</a></li>
         </ul>
     <?php elseif ($rol === "student"): ?>
         <ul>
@@ -33,6 +35,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
             <li><a>Mis Clases</a></li>
             <li><a>Trabajos</a></li>
             <li><a>Area Personal</a></li>
+            <li><a href="../logout.php">Cerrar sesión</a></li>
         </ul>
     <?php else: ?>
         <ul>
