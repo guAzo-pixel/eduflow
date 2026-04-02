@@ -1,5 +1,8 @@
 <?php 
-session_start(); 
+/*para la comprobación inicial cargamos el rol, una vez que hay sesion no volvemos a crearla */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 /*Comprobamos si "$_SESSION" existe si no asignamos otro valor */
 $rol = $_SESSION['user_rol'] ?? 'invitado'
