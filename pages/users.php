@@ -41,13 +41,14 @@ catch (PDOException $e) {
         <form method="GET" action="users.php">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
             <button type="submit">Buscar</button>
+            <?php 
+                /*Funcion para borrar la busqueda */
+                if (!empty($_GET['search'])){
+                    echo "<a href='users.php'><button type='button'>Borrar busqueda</button></a>";
+                }
+            ?>
         </form>
-        <?php 
-            /*Funcion para borrar la busqueda */
-            if (!empty($_GET['search'])){
-                echo "<a href='users.php'><button type='button'>Borrar busqueda</button></a>";
-            }
-        ?>
+
         <button>+ Añadir Usuario</button>
     </div>
     <?php 
