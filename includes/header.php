@@ -19,7 +19,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
     <?php if ($rol === "admin"): ?>
         <ul>
             <li><a>Inicio</a></li>
-            <li><a href="../pages/users.php">Crear/Modificar usuarios</a></li>
+            <li><a href="../pages/users/users.php">Crear/Modificar usuarios</a></li>
             <li><a>Crear/Modificar clases</a></li>
             <li><a>Matricular alumnos</a></li>
             <li><a href="../logout.php">Cerrar sesión</a></li>

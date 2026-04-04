@@ -2,11 +2,11 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
-include '../includes/db.php'; 
+include '../../includes/db.php'; 
 
 if (isset($_POST['crear'])){
     /*Recogemos los datos del formulario*/
@@ -34,7 +34,7 @@ if (isset($_POST['crear'])){
         $error = "Error al crear: " . $e->getMessage();
     }
 }
-include '../includes/header.php';
+include '../../includes/header.php';
 ?>
 <main>
     <h1>Crear Usuario</h1>
@@ -54,7 +54,7 @@ include '../includes/header.php';
 
         <label>Rol:</label>
         <select name="rol" required>
-            <option value="students" selected>Alumno</option>
+            <option value="student" selected>Alumno</option>
             <option value="teacher">Profesor</option>
             <option value="admin">Administrador</option>
         </select>
@@ -64,4 +64,4 @@ include '../includes/header.php';
     </form>
 </main>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>

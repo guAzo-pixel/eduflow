@@ -2,11 +2,11 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
-include '../includes/db.php'; 
+include '../../includes/db.php'; 
 
 
 /* Logica para mostrar los datos del usuario id */
@@ -55,8 +55,7 @@ if (isset($_POST['modificar'])){
 
             $stmt = $pdo->prepare($sql);
             
-            $stmt->execute([
-                ':id' => $id, ':new_name' => $new_name, ':new_lastname' => $new_lastname, ':new_email' => $new_email, ':new_rol' => $new_rol,':new_password' => $password_hash]);
+            $stmt->execute([':id' => $id, ':new_name' => $new_name, ':new_lastname' => $new_lastname, ':new_email' => $new_email, ':new_rol' => $new_rol,':new_password' => $password_hash]);
         }
         /* Si no esta modificado el campo contraseña mandamos todos los datos menos la password */
         else{
@@ -77,7 +76,7 @@ if (isset($_POST['modificar'])){
     }
 }
 
-include '../includes/header.php';
+include '../../includes/header.php';
 
 ?>
 
@@ -102,7 +101,7 @@ include '../includes/header.php';
 
         <label>Rol:</label>
         <select name="rol" required>
-            <option value="students" <?php if($user['rol'] == 'students') echo 'selected'; ?>>Alumno</option>
+            <option value="student" <?php if($user['rol'] == 'student') echo 'selected'; ?>>Alumno</option>
             <option value="teacher" <?php if($user['rol'] == 'teacher') echo 'selected'; ?>>Profesor</option>
             <option value="admin" <?php if($user['rol'] == 'admin') echo 'selected'; ?>>Administrador</option>
         </select>
@@ -112,4 +111,4 @@ include '../includes/header.php';
     </form>
 </main>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>

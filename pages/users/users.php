@@ -5,8 +5,8 @@ if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
     header("Location: ../index.php");
     exit();
 }
-include '../includes/header.php';
-include '../includes/db.php'; 
+include '../../includes/header.php';
+include '../../includes/db.php'; 
 
 try {
     /*Logica de la funcion para buscar usuario */
@@ -50,7 +50,7 @@ catch (PDOException $e) {
         </form>
         <a href="create_user.php">
             <button>+ Añadir Usuario</button>
-        </a>    
+        </a>
     </div>
     <?php 
     /* Mensaje de error o exito en caso de borrar un usuario */
@@ -100,4 +100,4 @@ catch (PDOException $e) {
     </table>
     
 </main>
-<?php include '../includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>
