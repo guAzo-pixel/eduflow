@@ -18,11 +18,11 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
 <nav>
     <?php if ($rol === "admin"): ?>
         <ul>
-            <li><a>Inicio</a></li>
-            <li><a href="../pages/users.php">Crear/Modificar usuarios</a></li>
-            <li><a>Crear/Modificar clases</a></li>
+            <li><a href="/index.php">Inicio</a></li>
+            <li><a href="/pages/users/users.php">Crear/Modificar usuarios</a></li>
+            <li><a href="/pages/classes/classes.php">Crear/Modificar clases</a></li>
             <li><a>Matricular alumnos</a></li>
-            <li><a href="../logout.php">Cerrar sesión</a></li>
+            <li><a href="/logout.php">Cerrar sesión</a></li>
         </ul>
     <?php elseif ($rol === "teacher"): ?>
         <ul>

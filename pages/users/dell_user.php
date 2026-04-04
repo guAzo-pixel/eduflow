@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
-include '../includes/db.php';
+include '../../includes/db.php';
 
 /*Comprobación si el id esta vacio*/
 if (isset($_GET['id'])){
