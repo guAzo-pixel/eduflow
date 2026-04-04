@@ -33,6 +33,7 @@ catch (PDOException $e) {
     $error = "Error al cargar los usuarios: " . $e->getMessage();
 }
 ?>
+
 <main>
     <h1>Gestion de Usuarios</h1>
 
@@ -40,15 +41,27 @@ catch (PDOException $e) {
         <form method="GET" action="users.php">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
             <button type="submit">Buscar</button>
+            <?php 
+                /*Funcion para borrar la busqueda */
+                if (!empty($_GET['search'])){
+                    echo "<a href='users.php'><button type='button'>Borrar busqueda</button></a>";
+                }
+            ?>
         </form>
-        <?php 
-            /*Funcion para borrar la busqueda */
-            if (!empty($_GET['search'])){
-                echo "<a href='users.php'><button type='button'>Borrar busqueda</button></a>";
-            }
-        ?>
+
         <button>+ Añadir Usuario</button>
     </div>
+    <?php 
+    /* Mensaje de error o exito en caso de borrar un usuario */
+    if(isset($_SESSION['success_message'])) {
+        echo "<div class='success'>" . $_SESSION['success_message'] . "</div>";
+        unset($_SESSION['success_message']);
+    }
+    if(isset($_SESSION['error_message'])) {
+        echo "<div class='error'>" . $_SESSION['error_message'] . "</div>";
+        unset($_SESSION['error_message']);
+    }
+    ?>
     <table border="1" width="100%" cellpadding="10">
         <thead>
             <tr>
@@ -70,7 +83,9 @@ catch (PDOException $e) {
                         <td><?php echo htmlspecialchars($user['rol']); ?></td>
                         <td><?php echo $user['time']; ?></td>
                         <td>
-                            <button>Modificar</button>
+                            <a href="modify_user.php?id=<?php echo $user['id_user']; ?>">
+                                <button>Modificar</button>
+                            </a>
                             <a href="dell_user.php?id=<?php echo $user['id_user']; ?>">
                                 <button style="color: red;">Eliminar</button>
                             </a>
