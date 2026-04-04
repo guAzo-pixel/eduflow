@@ -85,7 +85,7 @@ include '../../includes/header.php';
 
     <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-    <form method="POST" action="modify_user.php?id=<?php echo $user['id_user']; ?>">
+    <form method="GET" action="modify_user.php?id=<?php echo $user['id_user']; ?>">
 
         <label>Nombre</label>
         <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
