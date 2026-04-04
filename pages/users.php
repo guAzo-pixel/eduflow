@@ -48,8 +48,9 @@ catch (PDOException $e) {
                 }
             ?>
         </form>
-
-        <button>+ Añadir Usuario</button>
+        <a href="create_user.php">
+            <button>+ Añadir Usuario</button>
+        </a>    
     </div>
     <?php 
     /* Mensaje de error o exito en caso de borrar un usuario */

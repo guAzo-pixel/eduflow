@@ -39,16 +39,33 @@ if (isset($_POST['modificar'])){
     $new_name = trim($_POST['name']);
     $new_lastname = trim($_POST['lastName']);
     $new_email = trim($_POST['email']);
+    $new_password = $_POST['new_password'];
     $new_rol = $_POST['rol'];
 
+    /* Logica para actualizar los datos */
     try {
+        /* Identificamos al usuario */
         $id = $_GET['id'];
 
-        $sql = "UPDATE Users SET name = :new_name, lastName = :new_lastname, email = :new_email, rol = :new_rol WHERE id_user = :id";
+        /* Logica para canviar la contraseña, solo la canviamos si esta vacia*/
+        if (!empty($new_password)){
+            $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-        $stmt = $pdo->prepare($sql);
+            $sql = "UPDATE Users SET name = :new_name, lastName = :new_lastname, email = :new_email, rol = :new_rol, password = :new_password WHERE id_user = :id";
 
-        $stmt->execute([':id' => $id, ':new_name' => $new_name, ':new_lastname' => $new_lastname, ':new_email' => $new_email, ':new_rol' => $new_rol]);
+            $stmt = $pdo->prepare($sql);
+            
+            $stmt->execute([
+                ':id' => $id, ':new_name' => $new_name, ':new_lastname' => $new_lastname, ':new_email' => $new_email, ':new_rol' => $new_rol,':new_password' => $password_hash]);
+        }
+        /* Si no esta modificado el campo contraseña mandamos todos los datos menos la password */
+        else{
+            $sql = "UPDATE Users SET name = :new_name, lastName = :new_lastname, email = :new_email, rol = :new_rol WHERE id_user = :id";
+
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->execute([':id' => $id, ':new_name' => $new_name, ':new_lastname' => $new_lastname, ':new_email' => $new_email, ':new_rol' => $new_rol]);
+        }
 
         $_SESSION['success_message'] = "Usuario modificado correctamente.";
         header("Location: users.php");
@@ -63,6 +80,7 @@ if (isset($_POST['modificar'])){
 include '../includes/header.php';
 
 ?>
+
 <main>
     <h1>Modificar Usuario</h1>
 
@@ -79,6 +97,9 @@ include '../includes/header.php';
         <label>Correo Electrónico:</label>
         <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
         
+        <label>Nueva Contraseña:</label>
+        <input type="text" name="new_password" placeholder="Escribe para cambiarla">
+
         <label>Rol:</label>
         <select name="rol" required>
             <option value="students" <?php if($user['rol'] == 'students') echo 'selected'; ?>>Alumno</option>
