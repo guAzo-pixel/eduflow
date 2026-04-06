@@ -34,6 +34,7 @@ else{
 
 /*Si se pulsa el boton de guardar */
 if (isset($_POST['modificar'])){
+    $id = $_POST['id_user'];
     /*Recogemos los datos del formulario*/
     /* trim  es para pasar los datros sin espacios en blanco */
     $new_name = trim($_POST['name']);
@@ -45,7 +46,7 @@ if (isset($_POST['modificar'])){
     /* Logica para actualizar los datos */
     try {
         /* Identificamos al usuario */
-        $id = $_GET['id'];
+        
 
         /* Logica para canviar la contraseña, solo la canviamos si esta vacia*/
         if (!empty($new_password)){
@@ -85,7 +86,9 @@ include '../../includes/header.php';
 
     <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-    <form method="GET" action="modify_user.php?id=<?php echo $user['id_user']; ?>">
+    <form method="POST" action="">
+
+        <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
 
         <label>Nombre</label>
         <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
