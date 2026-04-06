@@ -2,10 +2,10 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
-include '../../includes/db.php'; 
+include '../../../includes/db.php'; 
 
 /*Comprobación si el id esta vacio, y si esta el del estudiante*/
 if (isset($_GET['id_reg']) && isset($_GET['id_student'])){

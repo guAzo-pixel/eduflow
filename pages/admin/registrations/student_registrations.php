@@ -2,10 +2,10 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
-include '../../includes/db.php'; 
+include '../../../includes/db.php'; 
 
 /* Logica para mostrar los datos del usuario id */
 if (isset($_GET['id'])){
@@ -43,7 +43,7 @@ if (isset($_GET['id'])){
     header("Location: registrations.php");
     exit();
 }
-include '../../includes/header.php';
+include '../../../includes/header.php';
 ?>
 <main>
     <h1>Gestion de Matriculas de <?php echo htmlspecialchars($student_info['name'] . ' ' . $student_info['lastName'] . '.')?></h1>
@@ -108,4 +108,4 @@ include '../../includes/header.php';
     </table>
     
 </main>
-<?php include '../../includes/footer.php'; ?>
+<?php include '../../../includes/footer.php'; ?>

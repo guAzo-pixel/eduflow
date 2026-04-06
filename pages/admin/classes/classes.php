@@ -2,11 +2,11 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
-include '../../includes/header.php';
-include '../../includes/db.php'; 
+include '../../../includes/header.php';
+include '../../../includes/db.php'; 
 
 try {
     /*Logica de la funcion para buscar usuario */
@@ -109,4 +109,4 @@ catch (PDOException $e) {
     </table>
     
 </main>
-<?php include '../../includes/footer.php'; ?>
+<?php include '../../../includes/footer.php'; ?>

@@ -2,11 +2,11 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
 
-include '../../includes/db.php'; 
+include '../../../includes/db.php'; 
 
 if (isset($_POST['crear'])){
     /*Recogemos los datos del formulario*/
@@ -32,14 +32,14 @@ if (isset($_POST['crear'])){
 }
 
 /*Cargamos la lista de profes*/
-try {
-    $sql_teachers = "SELECT id_user, name, rol, lastName FROM Users WHERE rol = 'teacher' OR rol = 'admin'";
-    $stmt_teachers = $pdo->query($sql_teachers);
-    $users = $stmt_teachers->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    $error = "Error al cargar los profesores: " . $e->getMessage();
-}
-include '../../includes/header.php';
+    try {
+        $sql_teachers = "SELECT id_user, name, rol, lastName FROM Users WHERE rol = 'teacher' OR rol = 'admin'";
+        $stmt_teachers = $pdo->query($sql_teachers);
+        $users = $stmt_teachers->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        $error = "Error al cargar los profesores: " . $e->getMessage();
+    }
+include '../../../includes/header.php';
 
 ?>
 <main>
@@ -75,4 +75,4 @@ include '../../includes/header.php';
     </form>
 </main>
 
-<?php include '../../includes/footer.php'; ?>
+<?php include '../../../includes/footer.php'; ?>
