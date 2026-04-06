@@ -11,8 +11,8 @@ include '../../includes/db.php';
 if (isset($_GET['id'])){
     $id = $_GET['id'];
 
-try {
-        /* Buscamos el nombre del alumno para el Título (H1) */
+    try {
+            /* Buscamos el nombre del alumno para el Título (H1) */
         $sql_student = "SELECT name, lastName FROM Users WHERE id_user = :id AND rol = 'student'";
         $stmt_student = $pdo->prepare($sql_student);
         $stmt_student->execute([':id' => $id]);
@@ -24,7 +24,7 @@ try {
         }
 
         /* Buscamos TODAS sus matrículas cruzando con la tabla Class */
-        $sql_classes = "SELECT Registrations.id_registrations, Registrations.time, Class.material, Class.course
+        $sql_classes = "SELECT Registrations.id_registrations, Registrations.time, Registrations.id_student, Class.material, Class.course
                         FROM Registrations
                         INNER JOIN Class ON Registrations.id_class = Class.id_class
                         WHERE Registrations.id_student = :id
@@ -34,8 +34,9 @@ try {
         $stmt_classes->execute([':id' => $id]);
         $registrations = $stmt_classes->fetchAll(PDO::FETCH_ASSOC);
 
-    } catch (PDOException $e) {
-        $error = "Error de base de datos: " . $e->getMessage();
+        } 
+    catch (PDOException $e) {
+       $error = "Error de base de datos: " . $e->getMessage();
     }
 
 } else {
@@ -80,7 +81,7 @@ include '../../includes/header.php';
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Alumno</th>
+
                 <th>Clase</th>
                 <th>Fecha de Alta</th>
                 <th>Acciones</th>
@@ -90,12 +91,11 @@ include '../../includes/header.php';
             <?php if (isset($registrations) && count($registrations) > 0): ?>
                 <?php foreach ($registrations as $registration): ?>
                     <tr>
-                        <td><?php echo $registrations['id_registrations']; ?></td>
-                        <td><?php echo htmlspecialchars($registration['name'] . ' ' . $student['lastName']); ?></td>
-                        <td><?php echo htmlspecialchars($registrations['material'] . ' ' . $registrations['course']); ?></td>
+                        <td><?php echo $registration['id_registrations']; ?></td>
+                        <td><?php echo htmlspecialchars($registration['material'] . ' ' . $registration['course']); ?></td>
                         <td><?php echo $registration['time']; ?></td>
                         <td>
-                            <a href="dell_registrations.php?id=<?php echo $student['id_user']; ?>">
+                            <a href="dell_registrations.php?id_reg=<?php echo $registration['id_registrations']; ?>&id_student=<?php echo $registration['id_student']; ?>">
                                 <button style="color: red;">Eliminar</button>
                             </a>
                         </td>

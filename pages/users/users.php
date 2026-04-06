@@ -23,7 +23,7 @@ try {
     }
     else {
          /* Si no se busca nada trae los 10 usuarios añadidos mas recientemente */
-        $sql = "SELECT * FROM Users ORDER BY time DESC LIMIT 10";
+        $sql = "SELECT * FROM Users ORDER BY time DESC";
         $stmt = $pdo->query($sql);
     }
     /* Rcogemos los datos de la respuesta */

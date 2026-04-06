@@ -31,7 +31,7 @@ try {
         $sql = "SELECT Class.*, Users.name, Users.lastName 
                 FROM Class 
                 INNER JOIN Users ON Class.id_teacher = Users.id_user 
-                ORDER BY Class.time DESC LIMIT 10";
+                ORDER BY Class.time DESC";
         $stmt = $pdo->query($sql);
     }
     
@@ -62,7 +62,7 @@ catch (PDOException $e) {
         </a>
     </div>
     <?php 
-    /* Mensaje de error o exito en caso de borrar un usuario */
+    /* Mensaje de error o exito en caso de borrar un clase */
     if(isset($_SESSION['success_message'])) {
         echo "<div class='success'>" . $_SESSION['success_message'] . "</div>";
         unset($_SESSION['success_message']);
@@ -103,7 +103,7 @@ catch (PDOException $e) {
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="6">No se encontraron usuarios.</td></tr>
+                <tr><td colspan="6">No se encontraron clases.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>

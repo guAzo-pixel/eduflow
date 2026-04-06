@@ -23,7 +23,7 @@ try {
     }
     else {
          /* Si no se busca nada trae los 10 usuarios añadidos mas recientemente */
-        $sql = "SELECT * FROM Users WHERE rol = 'student' ORDER BY time DESC LIMIT 10";
+        $sql = "SELECT * FROM Users WHERE rol = 'student'";
         $stmt = $pdo->query($sql);
     }
     /* Rcogemos los datos de la respuesta */
@@ -35,7 +35,7 @@ catch (PDOException $e) {
 ?>
 
 <main>
-    <h1>Gestion de Matriculas.</h1>
+    <h1>Gestion de Matriculas</h1>
 
     <div class="management-menu">
         <form method="GET" action="registrations.php">
@@ -47,6 +47,9 @@ catch (PDOException $e) {
                     echo "<a href='registrations.php'><button type='button'>Borrar busqueda</button></a>";
                 }
             ?>
+        <a href="create_user.php">
+            <button>+ Añadir Usuario</button>
+        </a>
         </form>
     </div>
     <?php 
