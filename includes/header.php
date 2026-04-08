@@ -27,7 +27,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
     <?php elseif ($rol === "teacher"): ?>
         <ul>
             <li><a href="/index.php">Inicio</a></li>
-            <li><a>Mis Clases</a></li>
+            <li><a href="/pages/teacher/classes/classes.php">Mis Clases</a></li>
             <li><a>Mis Alumnos</a></li>
             <li><a>Correciones</a></li>
             <li><a href="/logout.php">Cerrar sesión</a></li>
@@ -35,7 +35,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
     <?php elseif ($rol === "student"): ?>
         <ul>
             <li><a>Inicio</a></li>
-            <li><a>Mis Clases</a></li>
+            <li><a >Mis Clases</a></li>
             <li><a>Trabajos</a></li>
             <li><a>Area Personal</a></li>
             <li><a href="/logout.php">Cerrar sesión</a></li>

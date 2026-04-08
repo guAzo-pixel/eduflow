@@ -25,7 +25,9 @@ if (isset($_POST['entrar'])){
             Rescatamos todos estos datos para mantener la sesión y datos para la pesonalización de opciones*/
             $_SESSION['user_id'] = $usuario['id_user'];
             $_SESSION['user_name'] = $usuario['name'];
+            $_SESSION['user_lastName'] = $usuario['lastName'];
             $_SESSION['user_rol'] = $usuario['rol'];
+
 
             /*Redirigimos a la página index*/
             header("Location: index.php");
