@@ -2,11 +2,11 @@
     session_start();
     /* Si el usuario no esta logeado o no es admin le echamos */
     if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-        header("Location: ../../index.php");
+        header("Location: ../../../index.php");
         exit();
     }
 
-    include '../../includes/db.php'; 
+    include '../../../includes/db.php'; 
 
     try{
         if (isset($_GET['id_student'])){
@@ -85,7 +85,7 @@
     }
 
 
-    include '../../includes/header.php';
+    include '../../../includes/header.php';
 ?>
 <main>
     <h1>Matricular a <?php echo htmlspecialchars($student['name'] . ' ' . $student['lastName'])?> a una clase.</h1>
@@ -155,4 +155,4 @@
     </table>
     
 </main>
-<?php include '../../includes/footer.php'; ?>
+<?php include '../../../includes/footer.php'; ?>

@@ -19,26 +19,26 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
     <?php if ($rol === "admin"): ?>
         <ul>
             <li><a href="/index.php">Inicio</a></li>
-            <li><a href="/pages/users/users.php">Crear/Modificar usuarios</a></li>
-            <li><a href="/pages/classes/classes.php">Crear/Modificar clases</a></li>
-            <li><a href="/pages/registrations/registrations.php">Matricular alumnos</a></li>
+            <li><a href="/pages/admin/users/users.php">Crear/Modificar usuarios</a></li>
+            <li><a href="/pages/admin/classes/classes.php">Crear/Modificar clases</a></li>
+            <li><a href="/pages/admin/registrations/registrations.php">Matricular alumnos</a></li>
             <li><a href="/logout.php">Cerrar sesión</a></li>
         </ul>
     <?php elseif ($rol === "teacher"): ?>
         <ul>
-            <li><a>Inicio</a></li>
-            <li><a>Mis Clases</a></li>
+            <li><a href="/index.php">Inicio</a></li>
+            <li><a href="/pages/teacher/classes/classes.php">Mis Clases</a></li>
             <li><a>Mis Alumnos</a></li>
             <li><a>Correciones</a></li>
-            <li><a href="../logout.php">Cerrar sesión</a></li>
+            <li><a href="/logout.php">Cerrar sesión</a></li>
         </ul>
     <?php elseif ($rol === "student"): ?>
         <ul>
             <li><a>Inicio</a></li>
-            <li><a>Mis Clases</a></li>
+            <li><a >Mis Clases</a></li>
             <li><a>Trabajos</a></li>
             <li><a>Area Personal</a></li>
-            <li><a href="../logout.php">Cerrar sesión</a></li>
+            <li><a href="/logout.php">Cerrar sesión</a></li>
         </ul>
     <?php else: ?>
         <ul>
@@ -46,7 +46,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
             <li><a>Sobre Nosotros</a></li>
             <li><a>¿Como funciona?</a></li>
             <li><a>Nustros clientes</a></li>
-            <li><a href="../login.php">Inicia Sesion</a></li>
+            <li><a href="/login.php">Inicia Sesion</a></li>
         </ul>
     <?php endif; ?>
 </nav>

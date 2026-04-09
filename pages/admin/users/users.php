@@ -2,11 +2,11 @@
 session_start();
 /* Si el usuario no esta logeado o no es admin le echamos */
 if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "admin"){
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
-include '../../includes/header.php';
-include '../../includes/db.php'; 
+include '../../../includes/header.php';
+include '../../../includes/db.php'; 
 
 try {
     /*Logica de la funcion para buscar usuario */
@@ -14,7 +14,7 @@ try {
     if (isset($_GET['search']) && !empty($_GET['search'])){
         $search = $_GET['search'];
         
-        $sql = "SELECT * FROM Users WHERE rol = 'student' AND (name LIKE :search OR email LIKE :search OR id_user LIKE :search) ORDER BY time DESC";
+        $sql = "SELECT * FROM Users WHERE name LIKE :search OR email LIKE :search OR id_user LIKE :search ORDER BY time DESC";
         
         $stmt = $pdo->prepare($sql);
 
@@ -23,11 +23,11 @@ try {
     }
     else {
          /* Si no se busca nada trae los 10 usuarios añadidos mas recientemente */
-        $sql = "SELECT * FROM Users WHERE rol = 'student'";
+        $sql = "SELECT * FROM Users ORDER BY time DESC";
         $stmt = $pdo->query($sql);
     }
     /* Rcogemos los datos de la respuesta */
-    $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 catch (PDOException $e) {
     $error = "Error al cargar los usuarios: " . $e->getMessage();
@@ -35,22 +35,22 @@ catch (PDOException $e) {
 ?>
 
 <main>
-    <h1>Gestion de Matriculas</h1>
+    <h1>Gestion de Usuarios</h1>
 
     <div class="management-menu">
-        <form method="GET" action="registrations.php">
+        <form method="GET" action="users.php">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
             <button type="submit">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
-                    echo "<a href='registrations.php'><button type='button'>Borrar busqueda</button></a>";
+                    echo "<a href='users.php'><button type='button'>Borrar busqueda</button></a>";
                 }
             ?>
+        </form>
         <a href="create_user.php">
             <button>+ Añadir Usuario</button>
         </a>
-        </form>
     </div>
     <?php 
     /* Mensaje de error o exito en caso de borrar un usuario */
@@ -75,26 +75,29 @@ catch (PDOException $e) {
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($students) && count($students) > 0): ?>
-                <?php foreach ($students as $student): ?>
+            <?php if (isset($users) && count($users) > 0): ?>
+                <?php foreach ($users as $user): ?>
                     <tr>
-                        <td><?php echo $student['id_user']; ?></td>
-                        <td><?php echo htmlspecialchars($student['name'] . ' ' . $student['lastName']); ?></td>
-                        <td><?php echo htmlspecialchars($student['email']); ?></td>
-                        <td><?php echo htmlspecialchars($student['rol']); ?></td>
-                        <td><?php echo $student['time']; ?></td>
+                        <td><?php echo $user['id_user']; ?></td>
+                        <td><?php echo htmlspecialchars($user['name'] . ' ' . $user['lastName']); ?></td>
+                        <td><?php echo htmlspecialchars($user['email']); ?></td>
+                        <td><?php echo htmlspecialchars($user['rol']); ?></td>
+                        <td><?php echo $user['time']; ?></td>
                         <td>
-                            <a href="student_registrations.php?id=<?php echo $student['id_user']; ?>">
-                                <button>Ver/Modificarr</button>
+                            <a href="modify_user.php?id=<?php echo $user['id_user']; ?>">
+                                <button>Modificar</button>
+                            </a>
+                            <a href="dell_user.php?id=<?php echo $user['id_user']; ?>">
+                                <button style="color: red;">Eliminar</button>
                             </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="6">No se encontraron students.</td></tr>
+                <tr><td colspan="6">No se encontraron usuarios.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
     
 </main>
-<?php include '../../includes/footer.php'; ?>
+<?php include '../../../includes/footer.php'; ?>
