@@ -15,6 +15,7 @@ if (!isset($_GET['id_class'])) {
 }
 
 try {
+    /*Barrera de seguridad, solo el profe dueño de la clase puede acceder a la modificación de esta*/
     $id_class = $_GET['id_class'];
 
     $id = $_SESSION['user_id'];
@@ -31,4 +32,65 @@ try {
         header("Location: classes.php");
         exit();
     }
+
+    /* Buscamos los temas creados dentro de la clase*/
+    $sql_topics = "SELECT * FROM Topic WHERE id_class = :id_class ORDER BY number ASC";
+
+    $stmt_topics = $pdo->prepare($sql_topics);
+    
+    $stmt_topics->execute([':id_class' => $id_class]);
+    
+    $topics = $stmt_topics->fetchAll(PDO::FETCH_ASSOC);
+
+
+    
 }
+catch (PDOException $e) {
+    $error = "Error al cargar la clase: " . $e->getMessage();
+}
+
+include '../../../includes/header.php';
+
+?>
+<main>
+    <div class="header-section">
+        <h1>Temario: <?php echo htmlspecialchars($classes['material']); ?> Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
+        
+        <a href="topic/create_topic.php?id_class=<?php echo $id_class; ?>">
+            <button>+ Nuevo Tema</button>
+        </a>
+        <a href="classes.php">Volver</a>
+    </div>
+
+    <section class="topics-list">
+        <?php if (count($topics) > 0): ?>
+            <?php foreach ($topics as $topic): ?>
+                
+                <div class="topic-card">
+                    <a href="topic_details.php?id_topic=<?php echo $topic['id_topic']; ?>" class="topic-link">
+                        <div class="topic-content">
+                            <h3>
+                                UT<?php echo $topic['number']; ?> - <?php echo htmlspecialchars($topic['title']); ?>
+                            </h3>
+                            <?php if(!empty($topic['subtitle'])): ?>
+                                <p class="subtitle"><?php echo htmlspecialchars($topic['subtitle']); ?></p>
+                            <?php endif; ?>
+                            
+                            <div class="topic-info">
+                                <span>Actividades: (Aquí irá el conteo luego)</span>
+                            </div>
+                        </div>
+                        <div class="topic-arrow">
+                            <i>→</i>
+                        </div>
+                    </a>
+                </div>
+
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Aún no se han creado temas para esta asignatura.</p>
+        <?php endif; ?>
+    </section>
+</main>
+
+<?php include '../../../includes/footer.php'; ?>
