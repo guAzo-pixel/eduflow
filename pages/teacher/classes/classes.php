@@ -34,6 +34,17 @@ include '../../../includes/header.php';
         </a>
     <div>
     <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
+    <?php 
+    /* Mensaje de error o exito en caso de borrar un clase */
+    if(isset($_SESSION['success_message'])) {
+        echo "<div class='success'>" . $_SESSION['success_message'] . "</div>";
+        unset($_SESSION['success_message']);
+    }
+    if(isset($_SESSION['error_message'])) {
+        echo "<div class='error'>" . $_SESSION['error_message'] . "</div>";
+        unset($_SESSION['error_message']);
+    }
+    ?>
 
     <table border="1" width="100%" cellpadding="10">
         <thead>
@@ -41,19 +52,28 @@ include '../../../includes/header.php';
                 <th>ID</th>
                 <th>Materia</th>
                 <th>Curso</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <?php if (isset($classes) && count($classes) > 0): ?>
-                <?php foreach ($classes as $clase): ?>
+                <?php foreach ($classes as $class): ?>
                     <tr>
-                        <td><?php echo $clase['id_class']; ?></td>
-                        <td><?php echo htmlspecialchars($clase['material']); ?></td>
-                        <td><?php echo htmlspecialchars($clase['course']); ?></td>
+                        <td><?php echo $class['id_class']; ?></td>
+                        <td><?php echo htmlspecialchars($class['material']); ?></td>
+                        <td><?php echo htmlspecialchars($class['course']); ?></td>
+                        <td><?php echo htmlspecialchars($class['subtitle']); ?></td>
                         <td>
-                            <a href="class_dashboard.php?id_class=<?php echo $clase['id_class']; ?>">
-                            <button>Entrar a la Clase</button>
+                            <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
+                                <button>Entrar a la Clase</button>
+                            </a>
+                            <a href="modify_class.php?id=<?php echo $class['id_class']; ?>">
+                                <button>Personalizar</button>
+                            </a>
+                            <a href="dell_class.php?id=<?php echo $class['id_class']; ?>">
+                                <button style="color: red;">Eliminar</button>
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
