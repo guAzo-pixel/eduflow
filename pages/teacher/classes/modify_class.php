@@ -17,7 +17,7 @@ if (!isset($_GET['id'])) {
  
 
 
-/* Logica para mostrar los datos del usuario id */
+/* Logica para mostrar los datos de la clase id */
 if (isset($_GET['id'])){
     $id = $_GET['id'];
 

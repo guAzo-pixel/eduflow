@@ -18,7 +18,11 @@ try {
         $sql = "SELECT Class.*, Users.name, Users.lastName 
                 FROM Class
                 INNER JOIN Users ON Class.id_teacher = Users.id_user
-                WHERE Class.course LIKE :search OR Class.material LIKE :search OR Class.id_class LIKE :search 
+                WHERE Class.course LIKE :search 
+                OR Class.material LIKE :search 
+                OR Class.id_class LIKE :search
+                OR Users.name LIKE :search 
+                OR Users.lastName LIKE :search
                 ORDER BY Class.time DESC";
         
         $stmt = $pdo->prepare($sql);
@@ -27,7 +31,7 @@ try {
         $stmt->execute([':search' => '%' . $search . '%']);
     }
     else {
-         /* Si no se busca nada trae los 10 usuarios añadidos mas recientemente */
+         /* Si no se busca nada trae los usuarios añadidos mas recientemente */
         $sql = "SELECT Class.*, Users.name, Users.lastName 
                 FROM Class 
                 INNER JOIN Users ON Class.id_teacher = Users.id_user 

@@ -67,7 +67,7 @@ include '../../../includes/header.php';
             <?php foreach ($topics as $topic): ?>
                 
                 <div class="topic-card">
-                    <a href="topic_details.php?id_topic=<?php echo $topic['id_topic']; ?>" class="topic-link">
+                    <a href="topic/topic_details.php?id_topic=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>" class="topic-link">
                         <div class="topic-content">
                             <h3>
                                 UT<?php echo $topic['number']; ?> - <?php echo htmlspecialchars($topic['title']); ?>
@@ -77,13 +77,16 @@ include '../../../includes/header.php';
                             <?php endif; ?>
                             
                             <div class="topic-info">
-                                <span>Actividades: (Aquí irá el conteo luego)</span>
+                                <span>Actividades: </span>
                             </div>
                         </div>
                         <div class="topic-arrow">
                             <i>→</i>
                         </div>
                     </a>
+                    <a href="topic/modify_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>"><button>Modificar</button></a>
+                    <a href="topic/dell_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>"><button style="color: red;">Eliminar</button></a>
+                </div>
                 </div>
 
             <?php endforeach; ?>

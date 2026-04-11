@@ -63,7 +63,7 @@ include '../../../includes/header.php';
                         <td><?php echo $class['id_class']; ?></td>
                         <td><?php echo htmlspecialchars($class['material']); ?></td>
                         <td><?php echo htmlspecialchars($class['course']); ?></td>
-                        <td><?php echo htmlspecialchars($class['subtitle']); ?></td>
+                        <td><?php echo htmlspecialchars($class['subtitle'] ?? ''); ?></td>
                         <td>
                             <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
                                 <button>Entrar a la Clase</button>
