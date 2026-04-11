@@ -67,7 +67,7 @@ include '../../../includes/header.php';
             <?php foreach ($topics as $topic): ?>
                 
                 <div class="topic-card">
-                    <a href="topic_details.php/topic/?id_topic=<?php echo $topic['id_topic']; ?>" class="topic-link">
+                    <a href="topic/topic_details.php?id_topic=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>" class="topic-link">
                         <div class="topic-content">
                             <h3>
                                 UT<?php echo $topic['number']; ?> - <?php echo htmlspecialchars($topic['title']); ?>

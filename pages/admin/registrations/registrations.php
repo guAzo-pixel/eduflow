@@ -47,9 +47,6 @@ catch (PDOException $e) {
                     echo "<a href='registrations.php'><button type='button'>Borrar busqueda</button></a>";
                 }
             ?>
-        <a href="create_user.php">
-            <button>+ Añadir Usuario</button>
-        </a>
         </form>
     </div>
     <?php 
