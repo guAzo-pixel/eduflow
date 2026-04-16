@@ -54,12 +54,19 @@ include '../../../includes/header.php';
 ?>
 <main>
     <div class="header-section">
-        <h1>Temario: <?php echo htmlspecialchars($classes['material']); ?> Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
+        <h1>Temario: <?php echo htmlspecialchars($classes['material']); ?>. Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
         
         <a href="topic/create_topic.php?id_class=<?php echo $id_class; ?>">
             <button>+ Nuevo Tema</button>
         </a>
-        <a href="classes.php">Volver</a>
+
+        <a href="students_in.php?id_class=<?php echo $id_class; ?>">
+            <button>Alumnos Matriculados</button>
+        </a>
+
+        <a href="classes.php">
+            <button>Volver</button>
+        </a>
     </div>
 
     <section class="topics-list">
