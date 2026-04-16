@@ -1,38 +1,9 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../../index.php");
-    exit();
-}
-
-include '../../../../includes/db.php'; 
-
-/* Comprobamos que el ID venga por la URL */
-if (!isset($_GET['id_class'])) {
-    header("Location: classes.php");
-    exit();
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 try {
-    /*Barrera de seguridad, solo el profe dueño de la clase puede acceder a la modificación de esta*/
-    $id_class = $_GET['id_class'];
-
-    $id = $_SESSION['user_id'];
-
-    $sql = "SELECT * FROM Class WHERE id_teacher = :id AND id_class = :id_class"; 
-    
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->execute([':id' => $id, ':id_class' => $id_class]); 
-    
-    $classes = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if(!$classes){
-        header("Location: ../classes.php");
-        exit();
-    }
-    
     /*Consultamos el mumero actual de temas para saber que numero recomendar*/
     $sql_max = "SELECT MAX(number) as ultimo FROM Topic WHERE id_class = :id_class";
     $stmt_max = $pdo->prepare($sql_max);
@@ -65,7 +36,7 @@ catch (PDOException $e) {
     $error = "Error al cargar la clase: " . $e->getMessage();
 }
 
-include '../../../../includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 ?>
 
@@ -88,5 +59,5 @@ include '../../../../includes/header.php';
     </form>
 </main>
 
-<?php include '../../../../includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
     

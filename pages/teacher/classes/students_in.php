@@ -1,35 +1,7 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../index.php");
-    exit();
-}
-
-include '../../../includes/db.php';
-
-if (!isset($_GET['id_class'])) {
-    header("Location: classes.php");
-    exit();
-}
-$id_class = $_GET['id_class'];
-try {
-    /*Barrera de seguridad, solo el profe dueño de la clase puede acceder a la modificación de esta*/
-    $id_class = $_GET['id_class'];
-
-    $id = $_SESSION['user_id'];
-
-    $sql = "SELECT * FROM Class WHERE id_teacher = :id AND id_class = :id_class"; 
-    
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->execute([':id' => $id, ':id_class' => $id_class]); 
-    
-    $classes = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-catch (PDOException $e) {
-    $error = "Error al cargar la clase: " . $e->getMessage();
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 try {
     /*Logica de la funcion para buscar usuario */
@@ -71,20 +43,21 @@ catch (PDOException $e) {
     $error = "Error al cargar las matriculas: " . $e->getMessage();
 }
 
-include '../../../includes/header.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; 
 ?>
 
 <main>
     <h1>Gestion de Matriculas de <?php echo htmlspecialchars($classes['material']); ?>. Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
 
     <div class="management-menu">
-        <form method="GET" action="students_in.php?id_class=<?php echo $id_class; ?>">
+        <form method="GET" action="students_in.php">
+            <input type="hidden" name="id_class" value="<?php echo htmlspecialchars($id_class); ?>">
             <input type="text" name="search" placeholder="Buscar por curso, material, id...">
             <button type="submit">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
-                    echo "<a href='students_in.php?id_class=$id_class'><button type='button'>Borrar busqueda</button></a>";
+                    echo "<a href='students_in.php?id_class=" . htmlspecialchars($id_class) . "'><button type='button'>Borrar busqueda</button></a>";
                 }
             ?>
         </form>
@@ -135,4 +108,4 @@ include '../../../includes/header.php';
     </table>
     
 </main>
-<?php include '../../../includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

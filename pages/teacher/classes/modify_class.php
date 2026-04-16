@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../index.php");
-    exit();
-}
-
+include '../../../includes/auth_teacher.php';
 include '../../../includes/db.php'; 
 
 /* Comprobamos que el ID venga por la URL */
@@ -13,8 +7,6 @@ if (!isset($_GET['id'])) {
     header("Location: classes.php");
     exit();
 }
-
- 
 
 
 /* Logica para mostrar los datos de la clase id */

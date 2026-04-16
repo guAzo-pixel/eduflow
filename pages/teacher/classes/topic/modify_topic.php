@@ -1,42 +1,8 @@
 <?php
-session_start();
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../../index.php");
-    exit();
-}
-
-include '../../../../includes/db.php'; 
-
-
-/* Comprobamos que el ID venga por la URL */
-if (!isset($_GET['id_class'])) {
-    header("Location: ../classes.php");
-    exit();
-}
-
-try {
-    /*Barrera de seguridad, solo el profe dueño de la clase puede acceder a la modificación de esta*/
-    $id_class = $_GET['id_class'];
-
-    $id = $_SESSION['user_id'];
-
-    $sql = "SELECT * FROM Class WHERE id_teacher = :id AND id_class = :id_class"; 
-    
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->execute([':id' => $id, ':id_class' => $id_class]); 
-    
-    $classes = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if(!$classes){
-        header("Location: ../classes.php");
-        exit();
-    }
-}
-catch (PDOException $e) {
-    $error = "Error al cargar la clase: " . $e->getMessage();
-}
 /* Logica para mostrar los datos de la clase id */
 if (isset($_GET['id'])){
     $id = $_GET['id'];
@@ -90,7 +56,7 @@ if (isset($_POST['modificar'])){
     }
     
 }
-include '../../../../includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 ?>
 
@@ -99,7 +65,7 @@ include '../../../../includes/header.php';
 
     <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-    <form method="POST" action="modify_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>">
+    <form method="POST" action="modify_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo htmlspecialchars($_GET['id_class']); ?>">
 
         <label>Orden:</label>
         <input type="text" name="number" value="<?php echo htmlspecialchars($topic['number']); ?>" required>
@@ -111,8 +77,8 @@ include '../../../../includes/header.php';
         <input type="text" name="subtitle" value="<?php echo htmlspecialchars($topic['subtitle']); ?>">
         
         <button type="submit" name="modificar">Guardar Cambios</button>
-        <a href="../class_dashboard.php?id_class=<?php echo $_GET['id_class']; ?>">Cancelar</a>
+        <a href="../class_dashboard.php?id_class=<?php echo htmlspecialchars($_GET['id_class']); ?>">Cancelar</a>
     </form>
 </main>
 
-<?php include '../../../../includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
