@@ -1,7 +1,7 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_admin.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 try {
     /*Logica de la funcion para buscar usuario */
@@ -27,6 +27,9 @@ try {
 catch (PDOException $e) {
     $error = "Error al cargar los usuarios: " . $e->getMessage();
 }
+
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
+
 ?>
 
 <main>
@@ -77,7 +80,7 @@ catch (PDOException $e) {
                         <td><?php echo $student['time']; ?></td>
                         <td>
                             <a href="student_registrations.php?id=<?php echo $student['id_user']; ?>">
-                                <button>Ver/Modificarr</button>
+                                <button>Añadir</button>
                             </a>
                         </td>
                     </tr>

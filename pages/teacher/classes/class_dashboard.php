@@ -1,38 +1,9 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../index.php");
-    exit();
-}
-
-include '../../../includes/db.php'; 
-
-/* Comprobamos que el ID venga por la URL */
-if (!isset($_GET['id_class'])) {
-    header("Location: classes.php");
-    exit();
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 try {
-    /*Barrera de seguridad, solo el profe dueño de la clase puede acceder a la modificación de esta*/
-    $id_class = $_GET['id_class'];
-
-    $id = $_SESSION['user_id'];
-
-    $sql = "SELECT * FROM Class WHERE id_teacher = :id AND id_class = :id_class"; 
-    
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->execute([':id' => $id, ':id_class' => $id_class]); 
-    
-    $classes = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if(!$classes){
-        header("Location: classes.php");
-        exit();
-    }
-
     /* Buscamos los temas creados dentro de la clase*/
     $sql_topics = "SELECT * FROM Topic WHERE id_class = :id_class ORDER BY number ASC";
 
@@ -49,17 +20,24 @@ catch (PDOException $e) {
     $error = "Error al cargar la clase: " . $e->getMessage();
 }
 
-include '../../../includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 ?>
 <main>
     <div class="header-section">
-        <h1>Temario: <?php echo htmlspecialchars($classes['material']); ?> Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
+        <h1>Temario: <?php echo htmlspecialchars($classes['material']); ?>. Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
         
         <a href="topic/create_topic.php?id_class=<?php echo $id_class; ?>">
             <button>+ Nuevo Tema</button>
         </a>
-        <a href="classes.php">Volver</a>
+
+        <a href="students_in.php?id_class=<?php echo $id_class; ?>">
+            <button>Alumnos Matriculados</button>
+        </a>
+
+        <a href="classes.php">
+            <button>Volver</button>
+        </a>
     </div>
 
     <section class="topics-list">
@@ -96,4 +74,4 @@ include '../../../includes/header.php';
     </section>
 </main>
 
-<?php include '../../../includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

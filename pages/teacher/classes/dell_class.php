@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../index.php");
-    exit();
-}
-
+include '../../../includes/auth_teacher.php';
 include '../../../includes/db.php'; 
 
 
