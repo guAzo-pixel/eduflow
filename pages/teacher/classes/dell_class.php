@@ -1,6 +1,7 @@
 <?php
-include '../../../includes/auth_teacher.php';
-include '../../../includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 
 /*Comprobación si el id esta vacio*/

@@ -31,7 +31,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <button>+ Nuevo Tema</button>
         </a>
 
-        <a href="students_in.php?id_class=<?php echo $id_class; ?>">
+        <a href="students/students_in.php?id_class=<?php echo $id_class; ?>">
             <button>Alumnos Matriculados</button>
         </a>
 
