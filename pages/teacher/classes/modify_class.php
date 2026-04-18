@@ -80,7 +80,8 @@ include '../../../includes/header.php';
         <input type="text" name="course" value="<?php echo htmlspecialchars($class['course']); ?>" required>
 
         <label>Descripción:</label>
-        <input type="text" name="subtitle" value="<?php echo htmlspecialchars($class['subtitle']); ?>">
+
+        <textarea name="subtitle"><?php echo htmlspecialchars($class['subtitle']); ?></textarea>
         
         <button type="submit" name="modificar">Guardar Cambios</button>
         <a href="classes.php">Cancelar</a>

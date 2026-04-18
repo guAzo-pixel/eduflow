@@ -8,7 +8,7 @@ include 'includes/db.php';
     <h2>Usuarios registrados</h2>
     <ul>
         <?php
-        if ($rol === "admin"){
+        
         /*Hacemos la consulta */
         $sql = "SELECT * FROM Users";
 
@@ -20,15 +20,13 @@ include 'includes/db.php';
 
         /* Recorremos los datos obtenidos de la petición y los imprimimos*/
         foreach($users as $user){
-            $name = $user['name'];
+            $name = $user['email'];
             $lastname = $user['lastName'];
             $rol = $user['rol'];
             echo "<li>$name $lastname - Rol: $rol</li>";
         }
-        }
-        else{
-            echo "<p>No tienes acceso</p>";
-        }
+        
+        
         ?>
     </ul>
 </main>

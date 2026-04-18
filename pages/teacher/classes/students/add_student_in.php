@@ -4,24 +4,26 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 try {
-    /*Logica de la funcion para buscar usuario */
-    /* "$_GET" viaja en la url, es decir se ecribe ahi "/users.php?search=" */
     if (isset($_GET['search']) && !empty($_GET['search'])){
         $search = $_GET['search'];
         
-        $sql = "SELECT * FROM Users WHERE rol = 'student' AND (name LIKE :search OR email LIKE :search OR id_user LIKE :search) ORDER BY time DESC";
+        $sql = "SELECT * FROM Users 
+                WHERE rol = 'student' 
+                AND id_user NOT IN (SELECT id_student FROM Registrations WHERE id_class = :id_class)
+                AND (name LIKE :search OR email LIKE :search OR id_user LIKE :search) 
+                ORDER BY time DESC";
         
         $stmt = $pdo->prepare($sql);
-
-        /* Añadimos "%" en la petición para que busque coencidencias */
-        $stmt->execute([':search' => '%' . $search . '%']); 
+        $stmt->execute([':id_class' => $id_class, ':search' => '%' . $search . '%']); 
     }
     else {
-         /* Si no se busca nada trae los 10 usuarios añadidos mas recientemente */
-        $sql = "SELECT * FROM Users WHERE rol = 'student' ORDER BY time";
-        $stmt = $pdo->query($sql);
+        $sql = "SELECT * FROM Users 
+                WHERE rol = 'student' 
+                AND id_user NOT IN (SELECT id_student FROM Registrations WHERE id_class = :id_class)
+                ORDER BY time DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id_class' => $id_class]);
     }
-    /* Rcogemos los datos de la respuesta */
     $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 catch (PDOException $e) {
@@ -33,22 +35,24 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <main>
-    <h1>Gestion de Matriculas</h1>
+    <h1>Gestion de Matriculas de <?php echo htmlspecialchars($classes['material'] . ' ' . $classes['course']);?></h1>
 
     <div class="management-menu">
-        <form method="GET" action="registrations.php">
+        <form method="GET" action="add_student_in.php">
+            <input type="hidden" name="id_class" value="<?php echo htmlspecialchars($id_class); ?>">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
             <button type="submit">Buscar</button>
             <?php 
-                /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
-                    echo "<a href='registrations.php'><button type='button'>Borrar busqueda</button></a>";
+                    echo "<a href='add_student_in.php?id_class=" . htmlspecialchars($id_class) . "'><button type='button'>Borrar busqueda</button></a>";
                 }
             ?>
         </form>
+        <a href="students_in.php?id_class=<?php echo htmlspecialchars($id_class); ?>">
+            <button>Volver</button>
+        </a>
     </div>
     <?php 
-    /* Mensaje de error o exito en caso de borrar un usuario */
     if(isset($_SESSION['success_message'])) {
         echo "<div class='success'>" . $_SESSION['success_message'] . "</div>";
         unset($_SESSION['success_message']);
@@ -79,17 +83,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         <td><?php echo htmlspecialchars($student['rol']); ?></td>
                         <td><?php echo $student['time']; ?></td>
                         <td>
-                            <a href="student_registrations.php?id=<?php echo $student['id_user']; ?>">
+                            <a href="student_registrations.php?id=<?php echo $student['id_user']; ?>&id_class=<?php echo htmlspecialchars($id_class); ?>">
                                 <button>Añadir</button>
                             </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="6">No se encontraron students.</td></tr>
+                <tr><td colspan="6">No se encontraron alumnos disponibles para añadir.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
-    
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

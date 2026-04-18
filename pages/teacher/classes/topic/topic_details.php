@@ -7,27 +7,16 @@ if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
 }
 
 include '../../../../includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
-if (!isset($_GET['id_class']) || !isset($_GET['id_topic'])) {
+if (!isset($_GET['id_topic'])) {
     header("Location: ../classes.php");
     exit();
 }
 
-$id_class = $_GET['id_class'];
 $id_topic = $_GET['id_topic'];
-$id_teacher = $_SESSION['user_id'];
 
 try {
-    $sql_class = "SELECT * FROM Class WHERE id_teacher = :id AND id_class = :id_class"; 
-    $stmt_class = $pdo->prepare($sql_class);
-    $stmt_class->execute([':id' => $id_teacher, ':id_class' => $id_class]); 
-    $classes = $stmt_class->fetch(PDO::FETCH_ASSOC);
-
-    if(!$classes){
-        header("Location: ../classes.php");
-        exit();
-    }
-
     $sql_topic = "SELECT * FROM Topic WHERE id_topic = :id_topic AND id_class = :id_class";
     $stmt_topic = $pdo->prepare($sql_topic);
     $stmt_topic->execute([':id_topic' => $id_topic, ':id_class' => $id_class]);
