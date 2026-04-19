@@ -15,7 +15,7 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
     <title>Eduflow</title>
 </head>
 <body>
-<nav>
+<nav class="prin">
     <?php if ($rol === "admin"): ?>
         <ul>
             <li><a href="/index.php">Inicio</a></li>
@@ -28,16 +28,16 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
         <ul>
             <li><a href="/index.php">Inicio</a></li>
             <li><a href="/pages/teacher/classes/classes.php">Mis Clases</a></li>
-            <li><a>Mis Alumnos</a></li>
-            <li><a>Correciones</a></li>
+            <li><a href="/pages/teacher/users/my_students.php">Mis Alumnos</a></li>
+            <li><a href="/pages/teacher/corrections.php">Correciones</a></li>
             <li><a href="/logout.php">Cerrar sesión</a></li>
         </ul>
     <?php elseif ($rol === "student"): ?>
         <ul>
-            <li><a>Inicio</a></li>
-            <li><a >Mis Clases</a></li>
-            <li><a>Trabajos</a></li>
-            <li><a>Area Personal</a></li>
+            <li><a href="/index.php">Inicio</a></li>
+            <li><a href="/pages/student/classes/my_classes.php">Mis Clases</a></li>
+            <li><a href="/pages/student/tasks/my_tasks.php">Trabajos</a></li>
+            <li><a href="/pages/student/profile/my_profile.php">Area Personal</a></li>
             <li><a href="/logout.php">Cerrar sesión</a></li>
         </ul>
     <?php else: ?>
@@ -50,4 +50,3 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
         </ul>
     <?php endif; ?>
 </nav>
-

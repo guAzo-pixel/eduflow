@@ -1,12 +1,6 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== "teacher"){
-    header("Location: ../../../../index.php");
-    exit();
-}
-
-include '../../../../includes/db.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/auth_teacher.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/db.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/verify_teacher_class.php';
 
 if (!isset($_GET['id_topic'])) {
