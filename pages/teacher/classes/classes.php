@@ -71,7 +71,7 @@ include '../../../includes/header.php';
                             <a href="modify_class.php?id=<?php echo $class['id_class']; ?>">
                                 <button>Personalizar</button>
                             </a>
-                            <a href="dell_class.php?id=<?php echo $class['id_class']; ?>">
+                            <a href="dell_class.php?id_class=<?php echo $class['id_class']; ?>">
                                 <button style="color: red;">Eliminar</button>
                             </a>
                         </td>
