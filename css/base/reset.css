@@ -1,0 +1,54 @@
+/* 1. Box sizing global: para que el padding no estire las cajas */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Suavizado de fuentes y altura de línea base */
+html {
+    font-size: 16px; /* Base para usar rem después */
+    scroll-behavior: smooth; /* Para que los enlaces internos se deslicen */
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* 3. Evitar que las imágenes se salgan de su contenedor */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 4. Quitar estilos feos de listas y enlaces */
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 5. Reset de formularios (botones e inputs) */
+input, button, textarea, select {
+    font: inherit; /* Que hereden la letra del body */
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* 6. Tablas: para que no tengan espacios raros entre celdas */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
