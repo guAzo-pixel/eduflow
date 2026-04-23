@@ -1,0 +1,64 @@
+.prin {
+    display: flex;
+    justify-content: space-between; /* Separa el logo y el menú a los extremos */
+    align-items: center;
+    padding: 0 20px; /* Añadimos padding horizontal al contenedor principal */
+    border-bottom: 1px solid var(--accent-color); /* Movemos el borde aquí para que ocupe todo el ancho */
+    background-color: var(--primary-color);
+}
+
+.prin .logo {
+    font-family: "Inter", sans-serif;
+    font-weight: 100;
+    font-size: 1.8rem;
+    
+    color: var(--accent-color);
+}
+
+.prin ul {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+}
+
+.prin ul li {
+    margin-inline: 20px;
+}
+
+.prin ul li a {
+    transition: color 0.3s ease;
+}
+
+.prin ul li:not(.logout):not(.login) a:hover {
+    color: var(--accent-color);
+}
+
+/* Estilos específicos para el botón de cerrar sesión usando variables globales */
+
+.prin ul li.logout a {
+    display: block; 
+    background-color: var(--negative-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-light); /* Texto blanco para resaltar sobre el fondo rojo */
+    padding: 5px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el hover y el texto */
+}
+
+.prin ul li.logout a:hover {
+    background-color: var(--secun-negative-color);
+}
+
+.prin ul li.login a {
+    display: block; 
+    background-color: var(--positive-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-light); /* Texto blanco para resaltar sobre el fondo rojo */
+    padding: 5px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el hover y el texto */
+}
+
+.prin ul li.login a:hover {
+    background-color: var(--secun-positive-color);
+}
