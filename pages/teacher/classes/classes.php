@@ -30,9 +30,9 @@ include '../../../includes/header.php';
     <h1>Mis Clases</h1>
     <div class="management-menu">
         <a href="create_class.php">
-            <button href="create_class.php">+ Crear Clase</button>
+            <button class="btn-primary" href="create_class.php">+ Crear Clase</button>
         </a>
-    <div>
+</div>
     <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
     <?php 
     /* Mensaje de error o exito en caso de borrar un clase */

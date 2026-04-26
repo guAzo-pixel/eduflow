@@ -54,8 +54,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 <?php endforeach; ?>
             </select>
             <input type="text" name="search" placeholder="Nombre..." value="<?php echo htmlspecialchars($search); ?>">
-            <button type="submit">Filtrar</button>
-            <a href="my_students.php"><button type="button">Limpiar</button></a>
+            <button class="btn-primary" type="submit">Filtrar</button>
+            <a href="my_students.php"><button class="btn" type="button">Limpiar</button></a>
         </form>
     </div>
 

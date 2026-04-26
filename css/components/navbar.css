@@ -1,64 +1,139 @@
-.prin {
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 4rem;
     display: flex;
-    justify-content: space-between; /* Separa el logo y el menú a los extremos */
+    justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Añadimos padding horizontal al contenedor principal */
-    border-bottom: 1px solid var(--accent-color); /* Movemos el borde aquí para que ocupe todo el ancho */
-    background-color: var(--primary-color);
+    z-index: 1000;
+    pointer-events: none; /* Deja pasar los clics al fondo... */
+    background-color: var(--bg-paper);
+    border-bottom: 2px solid var(--accent-terracotta);
 }
 
-.prin .logo {
-    font-family: "Inter", sans-serif;
-    font-weight: 100;
-    font-size: 1.8rem;
+.main-header .logo {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-carbon);
+    pointer-events: auto; /* ...excepto en el logo */
+}
+
+.menu-toggle {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-carbon);
+    pointer-events: auto; /* ...y en el botón de menú */
+    z-index: 1001; /* Para que quede por encima del overlay */
+    position: relative;
+    transition: var(--transition-fluid);
+}
+
+.menu-toggle:hover {
+    color: var(--accent-sage);
+}
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(249, 247, 242, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-overlay ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-overlay a {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: var(--text-carbon);
+    position: relative;
+    line-height: 1;
+}
+
+.nav-overlay a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-terracotta);
+    transition: var(--transition-fluid);
+}
+
+.nav-overlay a:hover {
+    color: var(--accent-terracotta);
+    transform: translateY(-5px);
+}
+
+.nav-overlay a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   DESKTOP NAVIGATION (Inline menu)
+   ========================================================================== */
+@media (min-width: 992px) {
+    .menu-toggle {
+        display: none; /* Ocultamos el botón en escritorio */
+    }
+
+    .nav-overlay {
+        position: static;
+        background-color: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        opacity: 1;
+        pointer-events: auto;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .nav-overlay ul {
+        flex-direction: row;
+        gap: 2.5rem;
+    }
+
+    .nav-overlay a {
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 500;
+    }
     
-    color: var(--accent-color);
-}
-
-.prin ul {
-    display: flex;
-    padding: 10px;
-    align-items: center;
-    font-family: "Inter", sans-serif;
-    font-weight: 700;
-}
-
-.prin ul li {
-    margin-inline: 20px;
-}
-
-.prin ul li a {
-    transition: color 0.3s ease;
-}
-
-.prin ul li:not(.logout):not(.login) a:hover {
-    color: var(--accent-color);
-}
-
-/* Estilos específicos para el botón de cerrar sesión usando variables globales */
-
-.prin ul li.logout a {
-    display: block; 
-    background-color: var(--negative-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-light); /* Texto blanco para resaltar sobre el fondo rojo */
-    padding: 5px 15px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el hover y el texto */
-}
-
-.prin ul li.logout a:hover {
-    background-color: var(--secun-negative-color);
-}
-
-.prin ul li.login a {
-    display: block; 
-    background-color: var(--positive-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-light); /* Texto blanco para resaltar sobre el fondo rojo */
-    padding: 5px 15px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el hover y el texto */
-}
-
-.prin ul li.login a:hover {
-    background-color: var(--secun-positive-color);
+    .nav-overlay a::after {
+        bottom: -6px;
+        height: 1px;
+    }
+    
+    .nav-overlay a:hover {
+        transform: translateY(-2px);
+    }
 }

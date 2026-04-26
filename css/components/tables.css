@@ -1,0 +1,26 @@
+.editorial-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
+    margin-top: 1.5rem;
+}
+.editorial-table th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+.editorial-table td {
+    padding: 1.5rem;
+    background: var(--bg-surface);
+    vertical-align: middle;
+    transition: var(--transition-fluid);
+}
+.editorial-table tr td:first-child { border-top-left-radius: var(--radius-sm); border-bottom-left-radius: var(--radius-sm); }
+.editorial-table tr td:last-child { border-top-right-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm); }
+.editorial-table tbody tr:hover td {
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+}

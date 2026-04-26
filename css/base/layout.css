@@ -1,0 +1,79 @@
+main {
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    min-height: 100vh;
+}
+
+.management-header {
+    margin-bottom: 3rem;
+}
+
+.management-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.management-menu form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Footer Styling */
+.main-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(45, 45, 45, 0.05);
+    margin-top: 4rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   STANDARD FORMS (Create/Modify pages)
+   ========================================================================== */
+.standard-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+}
+
+.standard-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.standard-form label {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   SYSTEM ALERTS (Success & Error Messages)
+   ========================================================================== */
+.success, .error {
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+.success {
+    background-color: rgba(139, 154, 137, 0.15); /* Sage green low opacity */
+    color: var(--accent-sage);
+}
+.error {
+    background-color: rgba(193, 140, 125, 0.1); /* Terracotta low opacity */
+    color: var(--accent-terracotta);
+}
