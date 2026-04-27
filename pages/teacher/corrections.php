@@ -86,7 +86,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         </td>
                         <td>
                             <a href="/pages/teacher/classes/topic/tasks/grade_student.php?id_answer=<?php echo $ans['id_answer']; ?>">
-                                <button>
+                                <button class="btn btn-outline">
                                     <?php echo ($ans['note'] !== null) ? 'Modificar Nota' : 'Corregir'; ?>
                                 </button>
                             </a>

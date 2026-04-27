@@ -49,7 +49,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 <main>
     <h1>Entregas de: <?php echo htmlspecialchars($task_info['name']); ?></h1>
     <a href="../topic_details.php?id_topic=<?php echo $task_info['id_topic']; ?>&id_class=<?php echo $task_info['id_class']; ?>">
-        <button type="button">Volver al Tema</button>
+        <button class="btn" type="button">Volver al Tema</button>
     </a>
 
     <table border="1" width="100%">
@@ -84,7 +84,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <td>
                         <?php if ($student['id_answer']): ?>
                             <a href="grade_student.php?id_answer=<?php echo $student['id_answer']; ?>">
-                                <button>Corregir</button>
+                                <button class="btn btn-outline">Corregir</button>
                             </a>
                         <?php endif; ?>
                     </td>

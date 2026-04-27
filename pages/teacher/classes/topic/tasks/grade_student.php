@@ -71,7 +71,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <input type="number" step="0.01" name="note" value="<?php echo htmlspecialchars($answer_data['note'] ?? ''); ?>" placeholder="Ej: 8.5" required>
         
         <button type="submit" name="calificar" class="btn-primary">Guardar Calificación</button>
-        <a href="view_answers.php?id_task=<?php echo $answer_data['id_task']; ?>"><button class="btn">Cancelar<button></a>
+        <a href="view_answers.php?id_task=<?php echo $answer_data['id_task']; ?>"><button type="button" class="btn">Cancelar</button></a>
     </form>
 </main>
 

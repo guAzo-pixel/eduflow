@@ -28,15 +28,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <h1>Temario: <?php echo htmlspecialchars($classes['material']); ?>. Curso: <?php echo htmlspecialchars($classes['course']); ?></h1>
         
         <a href="topic/create_topic.php?id_class=<?php echo $id_class; ?>">
-            <button>+ Nuevo Tema</button>
+            <button class="btn-primary">+ Nuevo Tema</button>
         </a>
 
         <a href="students/students_in.php?id_class=<?php echo $id_class; ?>">
-            <button>Alumnos Matriculados</button>
+            <button class="btn btn-outline">Alumnos Matriculados</button>
         </a>
 
         <a href="classes.php">
-            <button>Volver</button>
+            <button class="btn">Volver</button>
         </a>
     </div>
 
@@ -62,8 +62,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <i>→</i>
                         </div>
                     </a>
-                    <a href="topic/modify_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>"><button>Modificar</button></a>
-                    <a href="topic/dell_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>"><button style="color: red;">Eliminar</button></a>
+                    <a href="topic/modify_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>"><button class="btn btn-outline" >Modificar</button></a>
+                    <a href="topic/dell_topic.php?id=<?php echo $topic['id_topic']; ?>&id_class=<?php echo $_GET['id_class']; ?>"><button class="btn btn-danger">Eliminar</button></a>
                 </div>
                 </div>
 

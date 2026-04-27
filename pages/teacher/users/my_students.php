@@ -55,11 +55,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             </select>
             <input type="text" name="search" placeholder="Nombre..." value="<?php echo htmlspecialchars($search); ?>">
             <button class="btn-primary" type="submit">Filtrar</button>
-            <a href="my_students.php"><button class="btn" type="button">Limpiar</button></a>
+            <a href="my_students.php"><button class="btn btn-outline" type="button">Limpiar</button></a>
         </form>
     </div>
 
-    <table border="1" width="100%" cellpadding="10">
+    <table>
         <thead>
             <tr>
                 <th>Nombre Alumno</th>
@@ -91,16 +91,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         </td>
                         <td>
                             <a href="enroll_existing_student.php?id_user=<?php echo $s['id_user']; ?>">
-                                <button>Modificar</button>
+                                <button class="btn btn-outline">Modificar</button>
                             </a>
                             <a href="mailto:<?php echo $s['email']; ?>">
-                                <button>Contactar</button>
+                                <button class="btn btn-primary">Contactar</button>
                             </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="3">No se han encontrado alumnos.</td></tr>
+                <tr><td colspan="4" style="text-align:center;">No se han encontrado alumnos.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>

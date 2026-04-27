@@ -30,9 +30,9 @@ include '../../../includes/header.php';
     <h1>Mis Clases</h1>
     <div class="management-menu">
         <a href="create_class.php">
-            <button class="btn-primary" href="create_class.php">+ Crear Clase</button>
+            <button class="btn btn-primary">+ Crear Clase</button>
         </a>
-</div>
+    </div>
     <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
     <?php 
     /* Mensaje de error o exito en caso de borrar un clase */
@@ -46,7 +46,7 @@ include '../../../includes/header.php';
     }
     ?>
 
-    <table border="1" width="100%" cellpadding="10">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -66,19 +66,19 @@ include '../../../includes/header.php';
                         <td><?php echo htmlspecialchars($class['subtitle'] ?? ''); ?></td>
                         <td>
                             <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
-                                <button>Entrar a la Clase</button>
+                                <button class="btn btn-primary">Entrar a la Clase</button>
                             </a>
                             <a href="modify_class.php?id=<?php echo $class['id_class']; ?>">
-                                <button>Personalizar</button>
+                                <button class="btn btn-outline">Personalizar</button>
                             </a>
                             <a href="dell_class.php?id_class=<?php echo $class['id_class']; ?>">
-                                <button style="color: red;">Eliminar</button>
+                                <button class="btn btn-danger">Eliminar</button>
                             </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="4">Aún no tienes clases asignadas.</td></tr>
+                <tr><td colspan="5" style="text-align:center;">Aún no tienes clases asignadas.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
