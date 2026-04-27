@@ -72,7 +72,7 @@ include '../../../../../includes/header.php';
         <input type="datetime-local" name="timeMax">
 
         <div class="buttons">
-            <button type="submit" name="crear">Publicar Tarea</button>
+            <button class="btn-primary">Publicar Tarea</button>
             <a href="../topic_details.php?id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>">
                 <button type="button" style="background:gray;">Cancelar</button>
             </a>

@@ -100,7 +100,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     ?>
 
     <div class="management-menu">
-        <a href="my_students.php"><button>Volver</button></a>
+        <a href="my_students.php"><button class="btn">Volver</button></a>
     </div>
 
     <table border="1" width="100%" cellpadding="10">
@@ -129,12 +129,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <?php if ($c['id_registrations']): ?>
                                 <form method="POST">
                                     <input type="hidden" name="id_registrations" value="<?php echo $c['id_registrations']; ?>">
-                                    <button type="submit" name="eliminar" style="color: red;">Eliminar de la clase</button>
+                                    <button class="btn btn-danger" type="submit" name="eliminar">Eliminar de la clase</button>
                                 </form>
                             <?php else: ?>
                                 <form method="POST">
                                     <input type="hidden" name="id_class" value="<?php echo $c['id_class']; ?>">
-                                    <button type="submit" name="matricular">Matricular</button>
+                                    <button class="btn btn-success"type="submit" name="matricular">Matricular</button>
                                 </form>
                             <?php endif; ?>
                         </td>

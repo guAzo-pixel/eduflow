@@ -40,13 +40,13 @@ include '../../../../includes/header.php';
         
         <div class="management-menu">
             <a href="content/create_content.php?id_topic=<?php echo $id_topic; ?>&id_class=<?php echo $id_class; ?>">
-                <button>+ Nuevo Contenido</button>
+                <button class="btn-primary">+ Nuevo Contenido</button>
             </a>
             <a href="tasks/create_task.php?id_topic=<?php echo $id_topic; ?>&id_class=<?php echo $id_class; ?>">
-                <button>+ Nueva Tarea</button>
+                <button class="btn-primary">+ Nueva Tarea</button>
             </a>
             <a href="../class_dashboard.php?id_class=<?php echo $id_class; ?>">
-                <button>Volver al Temario</button>
+                <button class="btn">Volver al Temario</button>
             </a>
         </div>
     </div>
@@ -67,8 +67,8 @@ include '../../../../includes/header.php';
                             <?php endif; ?>
                         </div>
                         <div class="card-actions">
-                            <a href="content/modify_content.php?id=<?php echo $content['id_content']; ?>&id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>"><button>Editar</button></a>
-                            <a href="content/delete_content.php?id=<?php echo $content['id_content']; ?>&id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>"><button style="color:red;">Borrar</button></a>
+                            <a href="content/modify_content.php?id=<?php echo $content['id_content']; ?>&id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>"><button class="btn btn-overlay">Editar</button></a>
+                            <a href="content/delete_content.php?id=<?php echo $content['id_content']; ?>&id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>"><button class="btn btn-danger">Borrar</button></a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -91,8 +91,8 @@ include '../../../../includes/header.php';
                             <p>Fecha límite: <?php echo $task['timeMax'] ? $task['timeMax'] : 'Sin límite'; ?></p>
                         </div>
                         <div class="card-actions">
-                            <a href="tasks/view_answers.php?id_task=<?php echo $task['id_task']; ?>"><button>Ver Entregas</button></a>
-                            <a href="tasks/delete_task.php?id=<?php echo $task['id_task']; ?>&id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>"><button style="color:red;">Borrar</button></a>
+                            <a href="tasks/view_answers.php?id_task=<?php echo $task['id_task']; ?>"><button class="btn btn-overlay">Ver Entregas</button></a>
+                            <a href="tasks/delete_task.php?id=<?php echo $task['id_task']; ?>&id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>"><button class="btn btn-danger">Borrar</button></a>
                         </div>
                     </div>
                 <?php endforeach; ?>

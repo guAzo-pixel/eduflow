@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
+    margin-top: 1.5rem;
+    border: none; /* Anula el border="1" de los archivos PHP */
+}
+table th, table td {
+    border: none; /* Anula los bordes internos heredados */
+}
+table th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-color);
+}
+table td {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    vertical-align: middle;
+    transition: var(--transition-fluid);
+    color: var(--text-main);
+}
+table tr td:first-child { border-top-left-radius: var(--radius-md); border-bottom-left-radius: var(--radius-md); }
+table tr td:last-child { border-top-right-radius: var(--radius-md); border-bottom-right-radius: var(--radius-md); }
+table tbody tr:hover td {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+    background-color: var(--bg-card);
+}

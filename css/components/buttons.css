@@ -1,0 +1,94 @@
+/* Botones generales*/
+input, button, textarea, select {
+    font: inherit;
+    outline: none;
+}
+
+/*Cuestionarios y formularios */
+input, textarea, select {
+    background: transparent;
+    border: 1px solid rgba(45, 45, 45, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fluid);
+}
+
+input:focus, textarea:focus {
+    border-color: var(--accent-sage);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: var(--transition-fluid);
+}
+
+
+/* Botones especificos*/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: var(--transition-fluid);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--accent-sage);
+    font-size: 0.85rem;
+    
+    
+    text-decoration: none;
+}
+.btn-primary {
+    font-size: 0.85rem;
+    
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+.btn-primary:hover {
+    background-color: var(--success);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+.btn-success {
+    background-color: var(--success);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+.btn-success:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+.btn-outline {
+    border-color: var(--secondary-color);
+    color: var(--primary-color);
+    background: transparent;
+}
+.btn-outline:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+.btn-danger {
+    border-color: var(--error);
+    color: var(--error);
+    background: transparent;
+}
+.btn-danger:hover {
+    background-color: var(--error);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
