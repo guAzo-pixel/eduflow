@@ -42,7 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         
         <label>Cambiar Contraseña:</label>
         <input type="password" name="new_password" placeholder="Nueva contraseña (dejar en blanco para no cambiar)">
-        <button type="submit" name="actualizar">Actualizar</button>
+        <button type="submit" name="actualizar" class="btn-primary">Actualizar</button>
     </form>
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

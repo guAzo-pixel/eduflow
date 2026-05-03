@@ -45,7 +45,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <form method="GET" action="students_in.php">
             <input type="hidden" name="id_class" value="<?php echo htmlspecialchars($id_class); ?>">
             <input type="text" name="search" placeholder="Buscar por curso, material, id...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 if (!empty($_GET['search'])){
                     echo "<a href='students_in.php?id_class=" . htmlspecialchars($id_class) . "'><button type='button'>Borrar busqueda</button></a>";
@@ -53,10 +53,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             ?>
         </form>
         <a href="add_student_in.php?id_class=<?php echo htmlspecialchars($id_class); ?>">
-            <button>+ Matricular Alumno</button>
+            <button class="btn-primary">+ Matricular Alumno</button>
         </a>
         <a href="../class_dashboard.php?id_class=<?php echo htmlspecialchars($id_class); ?>">
-            <button>Volver a la Clase</button>
+            <button class="btn">Volver a la Clase</button>
         </a>
     </div>
     <?php 
@@ -89,7 +89,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         <td><?php echo $student['time']; ?></td>
                         <td>
                             <a href="dell_student_in.php?id=<?php echo $student['id_registrations']; ?>&id_class=<?php echo htmlspecialchars($id_class); ?>">
-                                <button style="color: red;">Eliminar</button>
+                                <button class="btn btn-danger">Eliminar</button>
                             </a>
                         </td>
                     </tr>

@@ -55,7 +55,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         </td>
                         <td><?php echo $task['note'] !== null ? $task['note'] : '---'; ?></td>
                         <td>
-                            <a href="submit_task.php?id_task=<?php echo $task['id_task']; ?>"><button>Ver / Entregar</button></a>
+                            <a href="submit_task.php?id_task=<?php echo $task['id_task']; ?>"><button class="btn-primary">Ver / Entregar</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

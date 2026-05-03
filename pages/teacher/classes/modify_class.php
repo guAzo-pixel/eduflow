@@ -83,8 +83,11 @@ include '../../../includes/header.php';
 
         <textarea name="subtitle"><?php echo htmlspecialchars($class['subtitle']); ?></textarea>
         
-        <button type="submit" name="modificar">Guardar Cambios</button>
-        <a href="classes.php">Cancelar</a>
+        <div class="button-group">
+            <button type="submit" name="modificar" class="btn-primary">Guardar Cambios</button>
+            <a href="classes.php" class="btn">Cancelar</a>
+        </div>
+
     </form>
 </main>
 

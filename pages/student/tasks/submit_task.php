@@ -30,9 +30,17 @@ try {
     $answer = $stmt_answer->fetch(PDO::FETCH_ASSOC);
 
     if (isset($_POST['entregar']) && !$answer) {
-        $sql_insert = "INSERT INTO Answer (id_student, id_task) VALUES (:id_student, :id_task)";
+        /* Valor por defecto para testeos si no se sube nada */
+        $archivo_nombre = "entrega_de_prueba.pdf";
+
+        /* Logica preparada para cuando implementes la subida real de archivos */
+        if (isset($_FILES['archivo_tarea']) && $_FILES['archivo_tarea']['error'] === UPLOAD_ERR_OK) {
+            $archivo_nombre = $_FILES['archivo_tarea']['name'];
+        }
+
+        $sql_insert = "INSERT INTO Answer (id_student, id_task, archive) VALUES (:id_student, :id_task, :archive)";
         $stmt_insert = $pdo->prepare($sql_insert);
-        $stmt_insert->execute([':id_student' => $id_student, ':id_task' => $id_task]);
+        $stmt_insert->execute([':id_student' => $id_student, ':id_task' => $id_task, ':archive' => $archivo_nombre]);
         $_SESSION['success_message'] = "Tarea entregada correctamente.";
         header("Location: submit_task.php?id_task=" . $id_task);
         exit();
@@ -67,15 +75,26 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <?php if ($answer): ?>
             <p>Estado: Entregado el <?php echo $answer['time']; ?></p>
             <p>Nota: <?php echo $answer['note'] !== null ? $answer['note'] : 'Pendiente de corrección'; ?></p>
+            <?php if (!empty($answer['archive'])): ?>
+                <p>Archivo: <strong><?php echo htmlspecialchars($answer['archive']); ?></strong></p>
+            <?php endif; ?>
             <?php if ($answer['note'] === null): ?>
                 <form method="POST">
-                    <button type="submit" name="anular">Anular Entrega</button>
+                    <button type="submit" name="anular" class="btn-danger">Anular Entrega</button>
                 </form>
             <?php endif; ?>
         <?php else: ?>
-            <form method="POST"><button type="submit" name="entregar">Entregar Tarea</button></form>
+            <form method="POST" enctype="multipart/form-data">
+                <label>Archivo de tu entrega (Opcional en fase de testeo):</label><br>
+                <!-- Al no tener la etiqueta 'required', permite enviar el formulario vacío -->
+                <input type="file" name="archivo_tarea" style="margin: 1rem 0;">
+                
+                <div class="button-group">
+                    <button type="submit" name="entregar" class="btn-primary">Entregar Tarea</button>
+                    <a href="my_tasks.php" class="btn">Volver a Mis Trabajos</a>
+                </div>
+            </form>
         <?php endif; ?>
-    </div>
-    <a href="my_tasks.php"><button>Volver a Mis Trabajos</button></a>
+    </div> 
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

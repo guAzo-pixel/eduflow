@@ -42,7 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         <td><?php echo htmlspecialchars($class['teacher_name'] . ' ' . $class['teacher_lastName']); ?></td>
                         <td>
                             <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
-                                <button>Entrar a la Clase</button>
+                                <button class="btn-primary">Entrar a la Clase</button>
                             </a>
                         </td>
                     </tr>

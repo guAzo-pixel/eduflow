@@ -39,7 +39,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 <main>
     <h1><?php echo htmlspecialchars($class_info['material'] . ' - ' . $class_info['course']); ?></h1>
-    <a href="my_classes.php"><button>Volver a Mis Clases</button></a>
+    <a href="my_classes.php"><button class="btn">Volver a Mis Clases</button></a>
     
     <section class="topics-list">
         <?php if (!empty($topics)): ?>

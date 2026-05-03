@@ -65,15 +65,17 @@ include '../../../includes/header.php';
                         <td><?php echo htmlspecialchars($class['course']); ?></td>
                         <td><?php echo htmlspecialchars($class['subtitle'] ?? ''); ?></td>
                         <td>
-                            <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
-                                <button class="btn btn-primary">Entrar a la Clase</button>
-                            </a>
-                            <a href="modify_class.php?id=<?php echo $class['id_class']; ?>">
-                                <button class="btn btn-outline">Personalizar</button>
-                            </a>
-                            <a href="dell_class.php?id_class=<?php echo $class['id_class']; ?>">
-                                <button class="btn btn-danger">Eliminar</button>
-                            </a>
+                            <div class="button-group">
+                                <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
+                                    <button class="btn btn-primary">Entrar a la Clase</button>
+                                </a>
+                                <a href="modify_class.php?id=<?php echo $class['id_class']; ?>">
+                                    <button class="btn btn-outline">Personalizar</button>
+                                </a>
+                                <a href="dell_class.php?id_class=<?php echo $class['id_class']; ?>">
+                                    <button class="btn btn-danger">Eliminar</button>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
