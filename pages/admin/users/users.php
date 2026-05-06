@@ -35,7 +35,7 @@ catch (PDOException $e) {
     <div class="management-menu">
         <form method="GET" action="users.php">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
@@ -44,7 +44,7 @@ catch (PDOException $e) {
             ?>
         </form>
         <a href="create_user.php">
-            <button>+ Añadir Usuario</button>
+            <button class="btn-primary">+ Añadir Usuario</button>
         </a>
     </div>
     <?php 
@@ -80,10 +80,10 @@ catch (PDOException $e) {
                         <td><?php echo $user['time']; ?></td>
                         <td>
                             <a href="modify_user.php?id=<?php echo $user['id_user']; ?>">
-                                <button>Modificar</button>
+                                <button class="btn-primary">Modificar</button>
                             </a>
                             <a href="dell_user.php?id=<?php echo $user['id_user']; ?>">
-                                <button style="color: red;">Eliminar</button>
+                                <button class="btn-danger btn">Eliminar</button>
                             </a>
                         </td>
                     </tr>

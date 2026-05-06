@@ -41,26 +41,27 @@ include '../../../includes/header.php';
     <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
     <form method="POST" action="create_user.php">
         <label>Nombre</label>
-        <input type="text" name="name" placeholder="Nombre..." required>
+        <input type="text" name="name" placeholder="Nombre..." required><br><br>
         
         <label>Apellidos:</label>
-        <input type="text" name="lastName" placeholder="Apellido..." required>
+        <input type="text" name="lastName" placeholder="Apellido..." required><br><br>
         
         <label>Correo Electrónico:</label>
-        <input type="email" name="email" placeholder="Correo..." required>
+        <input type="email" name="email" placeholder="Correo..." required><br><br>
         
         <label>Contraseña:</label>
-        <input type="text" name="new_password" placeholder="Contraseña" required>
+        <input type="password" name="new_password" placeholder="Contraseña" required><br><br>
 
         <label>Rol:</label>
         <select name="rol" required>
             <option value="student" selected>Alumno</option>
             <option value="teacher">Profesor</option>
             <option value="admin">Administrador</option>
-        </select>
-
-        <button type="submit" name="crear">Crear Usuario</button>
-        <a href="users.php">Cancelar</a>
+        </select><br><br>
+        <div class="button-group">
+            <button type="submit" name="crear" class="btn-primary">Crear Usuario</button>
+            <a href="users.php" class="btn">Cancelar</a>
+        </div>
     </form>
 </main>
 

@@ -50,6 +50,7 @@
     if (isset($_POST['matricular'])) {
         $id_student = $_GET['id_student']; // Lo recogemos de la URL
         $id_class = $_POST['id_class'];    // Lo recogemos del input oculto
+        $search_param = isset($_GET['search']) ? "&search=" . urlencode($_GET['search']) : "";
 
         try {
             $sql_check = "SELECT id_registrations FROM Registrations WHERE id_student = :id_student AND id_class = :id_class";
@@ -63,7 +64,7 @@
                 $_SESSION['error_message'] = "El alumno ya está matriculado en esta clase.";
                 
                 // Redirigimos para recargar la página y que salga el mensaje rojo
-                header("Location: create_registrations.php?id_student=$id_student");
+                header("Location: create_registrations.php?id_student=$id_student" . $search_param);
                 exit();
                 
             } else {
@@ -72,9 +73,9 @@
                 $stmt_insert = $pdo->prepare($sql_insert);
                 $stmt_insert->execute([':id_student' => $id_student, ':id_class' => $id_class]);
 
-                // Mensaje verde y volvemos al perfil del alumno
+                // Mensaje verde y recargamos la página actual
                 $_SESSION['success_message'] = "Matrícula realizada con éxito.";
-                header("Location: student_registrations.php?id=$id_student");
+                header("Location: create_registrations.php?id_student=$id_student" . $search_param);
                 exit();
             }
 
@@ -96,7 +97,7 @@
             <input type="hidden" name="id_student" value="<?php echo $id; ?>">
             
             <input type="text" name="search" placeholder="Buscar materia, curso...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
@@ -105,7 +106,7 @@
             ?>
         </form>
         <a href="student_registrations.php?id=<?php echo $id; ?>">
-            <button>Volver a Clases Matriculadas</button>
+            <button class="btn btn-outline">Volver a Clases Matriculadas</button>
         </a>
     </div>
     <?php 
@@ -140,9 +141,9 @@
                         <td><?php echo htmlspecialchars($class['name'] . ' ' . $class['lastName']); ?></td>
                         <td><?php echo $class['time']; ?></td>
                         <td>
-                            <form method="POST" action="create_registrations.php?id_student=<?php echo $id; ?>">
+                            <form method="POST" action="create_registrations.php?id_student=<?php echo $id; ?><?php if(isset($_GET['search'])) echo '&search=' . urlencode($_GET['search']); ?>">
                                 <input type="hidden" name="id_class" value="<?php echo $class['id_class']; ?>">
-                                <button type="submit" name="matricular">Añadir</button>
+                                <button type="submit" name="matricular" class="btn btn-success">Añadir</button>
                             </form>
                             
                         </td>
