@@ -73,12 +73,12 @@ catch (PDOException $e) {
             <?php if (isset($users) && count($users) > 0): ?>
                 <?php foreach ($users as $user): ?>
                     <tr>
-                        <td><?php echo $user['id_user']; ?></td>
-                        <td><?php echo htmlspecialchars($user['name'] . ' ' . $user['lastName']); ?></td>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                        <td><?php echo htmlspecialchars($user['rol']); ?></td>
-                        <td><?php echo $user['time']; ?></td>
-                        <td>
+                        <td data-label="ID"><?php echo $user['id_user']; ?></td>
+                        <td data-label="Nombre"><?php echo htmlspecialchars($user['name'] . ' ' . $user['lastName']); ?></td>
+                        <td data-label="Email"><?php echo htmlspecialchars($user['email']); ?></td>
+                        <td data-label="Rol"><?php echo htmlspecialchars($user['rol']); ?></td>
+                        <td data-label="Fecha de Alta"><?php echo $user['time']; ?></td>
+                        <td data-label="Acciones">
                             <a href="modify_user.php?id=<?php echo $user['id_user']; ?>">
                                 <button class="btn-primary">Modificar</button>
                             </a>

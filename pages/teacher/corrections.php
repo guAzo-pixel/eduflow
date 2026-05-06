@@ -77,14 +77,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <?php if (count($answers) > 0): ?>
                 <?php foreach ($answers as $ans): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($ans['student_lastName'] . ", " . $ans['student_name']); ?></td>
-                        <td><?php echo htmlspecialchars($ans['material']); ?></td>
-                        <td><?php echo htmlspecialchars($ans['task_name']); ?></td>
-                        <td><?php echo $ans['fecha_entrega']; ?></td>
-                        <td>
+                        <td data-label="Alumno"><?php echo htmlspecialchars($ans['student_lastName'] . ", " . $ans['student_name']); ?></td>
+                        <td data-label="Clase"><?php echo htmlspecialchars($ans['material']); ?></td>
+                        <td data-label="Tarea"><?php echo htmlspecialchars($ans['task_name']); ?></td>
+                        <td data-label="Fecha Entrega"><?php echo $ans['fecha_entrega']; ?></td>
+                        <td data-label="Nota">
                             <?php echo ($ans['note'] !== null) ? $ans['note'] : "<span style='color:red;'>Sin nota</span>"; ?>
                         </td>
-                        <td>
+                        <td data-label="Acción">
                             <a href="/pages/teacher/classes/topic/tasks/grade_student.php?id_answer=<?php echo $ans['id_answer']; ?>">
                                 <button class="btn btn-outline">
                                     <?php echo ($ans['note'] !== null) ? 'Modificar Nota' : 'Corregir'; ?>

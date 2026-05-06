@@ -60,11 +60,11 @@ include '../../../includes/header.php';
             <?php if (isset($classes) && count($classes) > 0): ?>
                 <?php foreach ($classes as $class): ?>
                     <tr>
-                        <td><?php echo $class['id_class']; ?></td>
-                        <td><?php echo htmlspecialchars($class['material']); ?></td>
-                        <td><?php echo htmlspecialchars($class['course']); ?></td>
-                        <td><?php echo htmlspecialchars($class['subtitle'] ?? ''); ?></td>
-                        <td>
+                        <td data-label="ID"><?php echo $class['id_class']; ?></td>
+                        <td data-label="Materia"><?php echo htmlspecialchars($class['material']); ?></td>
+                        <td data-label="Curso"><?php echo htmlspecialchars($class['course']); ?></td>
+                        <td data-label="Descripción"><?php echo htmlspecialchars($class['subtitle'] ?? ''); ?></td>
+                        <td data-label="Acciones">
                             <div class="button-group">
                                 <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
                                     <button class="btn btn-primary">Entrar a la Clase</button>

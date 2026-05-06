@@ -37,10 +37,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <?php if (!empty($classes)): ?>
                 <?php foreach ($classes as $class): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($class['material']); ?></td>
-                        <td><?php echo htmlspecialchars($class['course']); ?></td>
-                        <td><?php echo htmlspecialchars($class['teacher_name'] . ' ' . $class['teacher_lastName']); ?></td>
-                        <td>
+                        <td data-label="Materia"><?php echo htmlspecialchars($class['material']); ?></td>
+                        <td data-label="Curso"><?php echo htmlspecialchars($class['course']); ?></td>
+                        <td data-label="Profesor"><?php echo htmlspecialchars($class['teacher_name'] . ' ' . $class['teacher_lastName']); ?></td>
+                        <td data-label="Acción">
                             <a href="class_dashboard.php?id_class=<?php echo $class['id_class']; ?>">
                                 <button class="btn-primary">Entrar a la Clase</button>
                             </a>

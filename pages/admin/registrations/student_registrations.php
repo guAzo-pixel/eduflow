@@ -91,10 +91,10 @@ include '../../../includes/header.php';
             <?php if (isset($registrations) && count($registrations) > 0): ?>
                 <?php foreach ($registrations as $registration): ?>
                     <tr>
-                        <td><?php echo $registration['id_registrations']; ?></td>
-                        <td><?php echo htmlspecialchars($registration['material'] . ' ' . $registration['course']); ?></td>
-                        <td><?php echo $registration['time']; ?></td>
-                        <td>
+                        <td data-label="Id"><?php echo $registration['id_registrations']; ?></td>
+                        <td data-label="Clase"><?php echo htmlspecialchars($registration['material'] . ' ' . $registration['course']); ?></td>
+                        <td data-label="Fecha de Alta"><?php echo $registration['time']; ?></td>
+                        <td data-label="Acciones">
                             <a href="dell_registrations.php?id_reg=<?php echo $registration['id_registrations']; ?>&id_student=<?php echo $registration['id_student']; ?>">
                                 <button class="btn-danger btn">Eliminar</button>
                             </a>
