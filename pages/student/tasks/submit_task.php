@@ -80,7 +80,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <?php endif; ?>
             <?php if ($answer['note'] === null): ?>
                 <form method="POST">
-                    <button type="submit" name="anular" class="btn-danger">Anular Entrega</button>
+                    <button type="submit" name="anular" class="btn btn-danger">Anular Entrega</button>
+                    <a href="my_tasks.php" class="btn">Volver a Mis Trabajos</a>
                 </form>
             <?php endif; ?>
         <?php else: ?>

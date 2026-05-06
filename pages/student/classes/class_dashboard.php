@@ -61,7 +61,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                                 <li>
                                     <?php echo htmlspecialchars($task['name']); ?> 
                                     <a href="/pages/student/tasks/submit_task.php?id_task=<?php echo $task['id_task']; ?>">
-                                        <button>Ver Tarea</button>
+                                        <button class="btn-primary">Ver Tarea</button>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
