@@ -66,29 +66,6 @@ a {
 }
 
 /* 5. Reset de formularios (botones e inputs) */
-input, button, textarea, select {
-    font: inherit;
-    outline: none;
-}
-
-input, textarea, select {
-    background: transparent;
-    border: 1px solid rgba(45, 45, 45, 0.1);
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-sm);
-    transition: var(--transition-fluid);
-}
-
-input:focus, textarea:focus {
-    border-color: var(--accent-sage);
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    background: none;
-    transition: var(--transition-fluid);
-}
 
 /* 6. Tablas: para que no tengan espacios raros entre celdas */
 table {
