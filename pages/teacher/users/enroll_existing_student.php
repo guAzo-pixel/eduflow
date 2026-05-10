@@ -116,16 +116,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <?php if (count($classes) > 0): ?>
                 <?php foreach ($classes as $c): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($c['material']); ?></td>
-                        <td><?php echo htmlspecialchars($c['course']); ?></td>
-                        <td>
+                        <td data-label="Materia"><?php echo htmlspecialchars($c['material']); ?></td>
+                        <td data-label="Curso"><?php echo htmlspecialchars($c['course']); ?></td>
+                        <td data-label="Estado">
                             <?php if ($c['id_registrations']): ?>
                                 <span style="color: green; font-weight: bold;">Matriculado</span>
                             <?php else: ?>
                                 <span style="color: gray;">No matriculado</span>
                             <?php endif; ?>
                         </td>
-                        <td>
+                        <td data-label="Acción">
                             <?php if ($c['id_registrations']): ?>
                                 <form method="POST">
                                     <input type="hidden" name="id_registrations" value="<?php echo $c['id_registrations']; ?>">

@@ -76,8 +76,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <label>Descripción:</label>
         <input type="text" name="subtitle" value="<?php echo htmlspecialchars($topic['subtitle']); ?>">
         
-        <button type="submit" name="modificar">Guardar Cambios</button>
-        <a href="../class_dashboard.php?id_class=<?php echo htmlspecialchars($_GET['id_class']); ?>">Cancelar</a>
+        <div class="button-group"> 
+        <button type="submit" name="modificar" class="btn-primary">Guardar Cambios</button>
+        <a href="../class_dashboard.php?id_class=<?php echo htmlspecialchars($_GET['id_class']); ?>" class="btn">Cancelar</a>
+        <div>
     </form>
 </main>
 

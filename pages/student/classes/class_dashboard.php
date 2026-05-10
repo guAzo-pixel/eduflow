@@ -39,7 +39,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 <main>
     <h1><?php echo htmlspecialchars($class_info['material'] . ' - ' . $class_info['course']); ?></h1>
-    <a href="my_classes.php"><button>Volver a Mis Clases</button></a>
+    <a href="my_classes.php"><button class="btn">Volver a Mis Clases</button></a>
     
     <section class="topics-list">
         <?php if (!empty($topics)): ?>
@@ -61,7 +61,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                                 <li>
                                     <?php echo htmlspecialchars($task['name']); ?> 
                                     <a href="/pages/student/tasks/submit_task.php?id_task=<?php echo $task['id_task']; ?>">
-                                        <button>Ver Tarea</button>
+                                        <button class="btn-primary">Ver Tarea</button>
                                     </a>
                                 </li>
                             <?php endforeach; ?>

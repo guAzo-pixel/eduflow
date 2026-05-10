@@ -69,9 +69,10 @@ include '../../../includes/header.php';
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
-
-        <button type="submit" name="crear">Crear Clase</button>
-        <a href="classes.php">Cancelar</a>
+        <div class="button-group">
+            <button type="submit" name="crear" class="btn-primary">Crear Clase</button>
+            <a href="classes.php" class="btn">Cancelar</a>
+        </div>
     </form>
 </main>
 

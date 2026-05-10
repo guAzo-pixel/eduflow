@@ -49,8 +49,10 @@ include '../../../includes/header.php';
             /* Usamos los datos de la sesion para evitar cosultas inecesarias*/
             echo $_SESSION['user_name'] . ' ' . $_SESSION['user_lastName']; ?>" disabled>
 
-        <button class="btn-primary" type="submit" name="crear">Crear Clase</button>
-        <a href="classes.php"><button class="btn">Cancelar</button></a>
+        <div class="button-group">
+            <button class="btn-primary" type="submit" name="crear">Crear Clase</button>
+            <a href="classes.php" class="btn">Cancelar</a>
+        </div>
     </form>
 </main>
 

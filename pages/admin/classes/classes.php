@@ -53,7 +53,7 @@ catch (PDOException $e) {
     <div class="management-menu">
         <form method="GET" action="classes.php">
             <input type="text" name="search" placeholder="Buscar por curso, material, id...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
@@ -62,7 +62,7 @@ catch (PDOException $e) {
             ?>
         </form>
         <a href="create_class.php">
-            <button>+ Añadir Clase</button>
+            <button class="btn-primary">+ Añadir Clase</button>
         </a>
     </div>
     <?php 
@@ -91,17 +91,17 @@ catch (PDOException $e) {
             <?php if (isset($classes) && count($classes) > 0): ?>
                 <?php foreach ($classes as $class): ?>
                     <tr>
-                        <td><?php echo $class['id_class']; ?></td>
-                        <td><?php echo htmlspecialchars($class['material']); ?></td>
-                        <td><?php echo htmlspecialchars($class['course']); ?></td>
-                        <td><?php echo htmlspecialchars($class['name'] . ' ' . $class['lastName']); ?></td>
-                        <td><?php echo $class['time']; ?></td>
-                        <td>
+                        <td data-label="ID"><?php echo $class['id_class']; ?></td>
+                        <td data-label="Materia"><?php echo htmlspecialchars($class['material']); ?></td>
+                        <td data-label="Curso"><?php echo htmlspecialchars($class['course']); ?></td>
+                        <td data-label="Creador"><?php echo htmlspecialchars($class['name'] . ' ' . $class['lastName']); ?></td>
+                        <td data-label="Fecha de Alta"><?php echo $class['time']; ?></td>
+                        <td data-label="Acciones">
                             <a href="modify_class.php?id=<?php echo $class['id_class']; ?>">
-                                <button>Modificar</button>
+                                <button class="btn-primary">Modificar</button>
                             </a>
                             <a href="dell_class.php?id=<?php echo $class['id_class']; ?>">
-                                <button style="color: red;">Eliminar</button>
+                                <button class="btn btn-danger">Eliminar</button>
                             </a>
                         </td>
                     </tr>

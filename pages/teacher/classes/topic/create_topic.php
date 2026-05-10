@@ -54,8 +54,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <input type="text" name="subtitle" placeholder="Historia básica de la penins...">
 
 
-        <button type="submit" name="crear">Crear Tema</button>
-        <a href="../class_dashboard.php?id_class=<?php echo $id_class; ?>">Cancelar</a>
+        <button type="submit" name="crear" class="btn-primary">Crear Tema</button>
+        <a href="../class_dashboard.php?id_class=<?php echo $id_class; ?>" class="btn">Cancelar</a>
     </form>
 </main>
 

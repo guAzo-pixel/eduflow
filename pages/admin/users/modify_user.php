@@ -82,19 +82,19 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <form method="POST" action="">
 
-        <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
+        <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>"><br><br>
 
         <label>Nombre</label>
-        <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
+        <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required><br><br>
         
         <label>Apellidos:</label>
-        <input type="text" name="lastName" value="<?php echo htmlspecialchars($user['lastName']); ?>" required>
+        <input type="text" name="lastName" value="<?php echo htmlspecialchars($user['lastName']); ?>" required><br><br>
         
         <label>Correo Electrónico:</label>
-        <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+        <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required><br><br>
         
         <label>Nueva Contraseña:</label>
-        <input type="text" name="new_password" placeholder="Escribe para cambiarla">
+        <input type="text" name="new_password" placeholder="Escribe para cambiarla"><br><br>
 
         <label>Rol:</label>
         <select name="rol" required>
@@ -102,9 +102,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <option value="teacher" <?php if($user['rol'] == 'teacher') echo 'selected'; ?>>Profesor</option>
             <option value="admin" <?php if($user['rol'] == 'admin') echo 'selected'; ?>>Administrador</option>
         </select>
-        
-        <button type="submit" name="modificar">Guardar Cambios</button>
-        <a href="users.php">Cancelar</a>
+        <div class="button-group">
+            <button type="submit" name="modificar" class="btn-primary">Guardar Cambios</button>
+            <a href="users.php" class="btn">Cancelar</a>
+        </div>
     </form>
 </main>
 

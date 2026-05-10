@@ -43,19 +43,19 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <?php if (!empty($tasks)): ?>
                 <?php foreach ($tasks as $task): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($task['material']); ?></td>
-                        <td><?php echo htmlspecialchars($task['task_name']); ?></td>
-                        <td><?php echo $task['timeMax'] ? $task['timeMax'] : 'Sin límite'; ?></td>
-                        <td>
+                        <td data-label="Clase"><?php echo htmlspecialchars($task['material']); ?></td>
+                        <td data-label="Tarea"><?php echo htmlspecialchars($task['task_name']); ?></td>
+                        <td data-label="Fecha Límite"><?php echo $task['timeMax'] ? $task['timeMax'] : 'Sin límite'; ?></td>
+                        <td data-label="Estado">
                             <?php if ($task['id_answer']): ?>
                                 <span class="success">Entregado</span>
                             <?php else: ?>
                                 <span class="error">Pendiente</span>
                             <?php endif; ?>
                         </td>
-                        <td><?php echo $task['note'] !== null ? $task['note'] : '---'; ?></td>
-                        <td>
-                            <a href="submit_task.php?id_task=<?php echo $task['id_task']; ?>"><button>Ver / Entregar</button></a>
+                        <td data-label="Nota"><?php echo $task['note'] !== null ? $task['note'] : '---'; ?></td>
+                        <td data-label="Acción">
+                            <a href="submit_task.php?id_task=<?php echo $task['id_task']; ?>"><button class="btn-primary">Ver / Entregar</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

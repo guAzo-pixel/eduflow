@@ -35,7 +35,7 @@ catch (PDOException $e) {
     <div class="management-menu">
         <form method="GET" action="registrations.php">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
@@ -70,14 +70,14 @@ catch (PDOException $e) {
             <?php if (isset($students) && count($students) > 0): ?>
                 <?php foreach ($students as $student): ?>
                     <tr>
-                        <td><?php echo $student['id_user']; ?></td>
-                        <td><?php echo htmlspecialchars($student['name'] . ' ' . $student['lastName']); ?></td>
-                        <td><?php echo htmlspecialchars($student['email']); ?></td>
-                        <td><?php echo htmlspecialchars($student['rol']); ?></td>
-                        <td><?php echo $student['time']; ?></td>
-                        <td>
+                        <td data-label="ID"><?php echo $student['id_user']; ?></td>
+                        <td data-label="Nombre"><?php echo htmlspecialchars($student['name'] . ' ' . $student['lastName']); ?></td>
+                        <td data-label="Email"><?php echo htmlspecialchars($student['email']); ?></td>
+                        <td data-label="Rol"><?php echo htmlspecialchars($student['rol']); ?></td>
+                        <td data-label="Fecha de Alta"><?php echo $student['time']; ?></td>
+                        <td data-label="Acciones">
                             <a href="student_registrations.php?id=<?php echo $student['id_user']; ?>">
-                                <button>Ver/Modificarr</button>
+                                <button class="btn-primary">Ver/Modificarr</button>
                             </a>
                         </td>
                     </tr>

@@ -92,3 +92,16 @@ button {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
+
+/* Agrupación de botones */
+.button-group {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Margen extra para los grupos de botones dentro de formularios */
+form .button-group {
+    margin-top: var(--spacing-lg);
+}

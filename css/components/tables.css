@@ -31,3 +31,47 @@ table tbody tr:hover td {
     transform: translateY(-3px);
     background-color: var(--bg-card);
 }
+
+/* ==========================================================================
+   RESPONSIVE TABLES (Mobile Card View)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    table {
+        border-spacing: 0; /* Reseteamos el espaciado para la vista de tarjeta */
+    }
+
+    table thead {
+        display: none; /* Ocultamos los encabezados, los mostraremos en cada celda */
+    }
+
+    table tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-soft);
+        background: var(--bg-card);
+        overflow: hidden; /* Clipa el contenido para respetar los bordes redondeados */
+    }
+
+    table td {
+        display: block;
+        text-align: right; /* Alineamos el contenido a la derecha */
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--bg-paper);
+    }
+
+    table td::before {
+        content: attr(data-label); /* Usamos el atributo data-label como encabezado */
+        float: left;
+        font-weight: 600;
+        color: var(--text-carbon);
+        text-align: left;
+    }
+
+    table td:last-of-type {
+        border-bottom: none; /* Elimina la línea divisoria del último elemento */
+    }
+
+    table tr td:first-child, table tr td:last-child { border-radius: 0; }
+    table tbody tr:hover td { transform: none; box-shadow: none; }
+}

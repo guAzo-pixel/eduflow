@@ -55,7 +55,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             </select>
             <input type="text" name="search" placeholder="Nombre..." value="<?php echo htmlspecialchars($search); ?>">
             <button class="btn-primary" type="submit">Filtrar</button>
-            <a href="my_students.php"><button class="btn btn-outline" type="button">Limpiar</button></a>
+            <a href="my_students.php"><button class="btn " type="button">Limpiar</button></a>
         </form>
     </div>
 
@@ -72,9 +72,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <?php if (!empty($students)): ?>
                 <?php foreach ($students as $s): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($s['name'] . " " . $s['lastName']); ?></td>
-                        <td><?php echo htmlspecialchars($s['email']); ?></td>
-                        <td>
+                        <td data-label="Nombre Alumno"><?php echo htmlspecialchars($s['name'] . " " . $s['lastName']); ?></td>
+                        <td data-label="Correo"><?php echo htmlspecialchars($s['email']); ?></td>
+                        <td data-label="Asignaturas contigo">
                             <?php 
                             // Buscamos las materias que este alumno cursa con ESTE profesor
                             $sql_mats = "SELECT Class.material 
@@ -89,7 +89,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             echo implode(", ", $materias); // Junta las materias con una coma
                             ?>
                         </td>
-                        <td>
+                        <td data-label="Acciones">
                             <a href="enroll_existing_student.php?id_user=<?php echo $s['id_user']; ?>">
                                 <button class="btn btn-outline">Modificar</button>
                             </a>

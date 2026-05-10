@@ -35,7 +35,7 @@ catch (PDOException $e) {
     <div class="management-menu">
         <form method="GET" action="users.php">
             <input type="text" name="search" placeholder="Buscar por nombre, email, id...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
@@ -44,7 +44,7 @@ catch (PDOException $e) {
             ?>
         </form>
         <a href="create_user.php">
-            <button>+ Añadir Usuario</button>
+            <button class="btn-primary">+ Añadir Usuario</button>
         </a>
     </div>
     <?php 
@@ -73,17 +73,17 @@ catch (PDOException $e) {
             <?php if (isset($users) && count($users) > 0): ?>
                 <?php foreach ($users as $user): ?>
                     <tr>
-                        <td><?php echo $user['id_user']; ?></td>
-                        <td><?php echo htmlspecialchars($user['name'] . ' ' . $user['lastName']); ?></td>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                        <td><?php echo htmlspecialchars($user['rol']); ?></td>
-                        <td><?php echo $user['time']; ?></td>
-                        <td>
+                        <td data-label="ID"><?php echo $user['id_user']; ?></td>
+                        <td data-label="Nombre"><?php echo htmlspecialchars($user['name'] . ' ' . $user['lastName']); ?></td>
+                        <td data-label="Email"><?php echo htmlspecialchars($user['email']); ?></td>
+                        <td data-label="Rol"><?php echo htmlspecialchars($user['rol']); ?></td>
+                        <td data-label="Fecha de Alta"><?php echo $user['time']; ?></td>
+                        <td data-label="Acciones">
                             <a href="modify_user.php?id=<?php echo $user['id_user']; ?>">
-                                <button>Modificar</button>
+                                <button class="btn-primary">Modificar</button>
                             </a>
                             <a href="dell_user.php?id=<?php echo $user['id_user']; ?>">
-                                <button style="color: red;">Eliminar</button>
+                                <button class="btn-danger btn">Eliminar</button>
                             </a>
                         </td>
                     </tr>

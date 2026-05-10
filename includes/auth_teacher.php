@@ -1,6 +1,5 @@
 <?php
 // Iniciamos la sesión de forma segura verificando si no se ha iniciado ya.
-// Esto evita los típicos errores "session had already been started".
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

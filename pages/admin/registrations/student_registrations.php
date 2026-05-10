@@ -51,7 +51,7 @@ include '../../../includes/header.php';
     <div class="management-menu">
         <form method="GET" action="registrations.php">
             <input type="text" name="search" placeholder="Buscar la clase...">
-            <button type="submit">Buscar</button>
+            <button type="submit" class="btn">Buscar</button>
             <?php 
                 /*Funcion para borrar la busqueda */
                 if (!empty($_GET['search'])){
@@ -60,10 +60,10 @@ include '../../../includes/header.php';
             ?>
         </form>
         <a href="create_registrations.php?id_student=<?php echo $id; ?>">
-            <button>+ Añadir a una Clase</button>
+            <button class="btn-primary">+ Añadir a una Clase</button>
         </a>
         <a href="registrations.php">
-            <button>Volver a Alumnos</button>
+            <button class="btn">Volver a Alumnos</button>
         </a>
     </div>
     <?php 
@@ -91,12 +91,12 @@ include '../../../includes/header.php';
             <?php if (isset($registrations) && count($registrations) > 0): ?>
                 <?php foreach ($registrations as $registration): ?>
                     <tr>
-                        <td><?php echo $registration['id_registrations']; ?></td>
-                        <td><?php echo htmlspecialchars($registration['material'] . ' ' . $registration['course']); ?></td>
-                        <td><?php echo $registration['time']; ?></td>
-                        <td>
+                        <td data-label="Id"><?php echo $registration['id_registrations']; ?></td>
+                        <td data-label="Clase"><?php echo htmlspecialchars($registration['material'] . ' ' . $registration['course']); ?></td>
+                        <td data-label="Fecha de Alta"><?php echo $registration['time']; ?></td>
+                        <td data-label="Acciones">
                             <a href="dell_registrations.php?id_reg=<?php echo $registration['id_registrations']; ?>&id_student=<?php echo $registration['id_student']; ?>">
-                                <button style="color: red;">Eliminar</button>
+                                <button class="btn-danger btn">Eliminar</button>
                             </a>
                         </td>
                     </tr>
