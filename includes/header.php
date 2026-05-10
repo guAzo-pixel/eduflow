@@ -42,8 +42,8 @@ $rol = $_SESSION['user_rol'] ?? 'invitado'
                 <li><a href="/logout.php" style="color: var(--accent-terracotta);">Cerrar sesión</a></li>
             <?php else: ?>
                 <li><a href="/index.php">Inicio</a></li>
-                <li><a href="#">Sobre Nosotros</a></li>
-                <li><a href="#">¿Cómo funciona?</a></li>
+                <li><a href="/about.php">Sobre Nosotros</a></li>
+                <li><a href="/how_it_works.php">¿Cómo funciona?</a></li>
                 <li><a href="/login.php" style="color: var(--accent-terracotta);">Inicia Sesión</a></li>
             <?php endif; ?>
         </ul>
