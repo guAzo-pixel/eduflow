@@ -1,35 +1,46 @@
 table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 0.75rem;
+    border-spacing: 0 0.5rem; /* Espaciado más cohesivo */
     margin-top: 1.5rem;
-    border: none; /* Anula el border="1" de los archivos PHP */
+    border: none;
 }
 table th, table td {
-    border: none; /* Anula los bordes internos heredados */
+    border: none;
 }
 table th {
     text-align: left;
-    padding: 1rem 1.5rem;
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--secondary-color);
     font-weight: 600;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 1px solid var(--bg-paper);
 }
 table td {
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
     background: var(--bg-card);
     vertical-align: middle;
-    transition: var(--transition-fluid);
+    transition: all 0.3s ease;
     color: var(--text-main);
+    border-top: 1px solid var(--bg-paper);
+    border-bottom: 1px solid var(--bg-paper);
 }
-table tr td:first-child { border-top-left-radius: var(--radius-md); border-bottom-left-radius: var(--radius-md); }
-table tr td:last-child { border-top-right-radius: var(--radius-md); border-bottom-right-radius: var(--radius-md); }
+table tr td:first-child { 
+    border-top-left-radius: var(--radius-sm); 
+    border-bottom-left-radius: var(--radius-sm); 
+    border-left: 1px solid var(--bg-paper);
+}
+table tr td:last-child { 
+    border-top-right-radius: var(--radius-sm); 
+    border-bottom-right-radius: var(--radius-sm); 
+    border-right: 1px solid var(--bg-paper);
+}
 table tbody tr:hover td {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-3px);
-    background-color: var(--bg-card);
+    background-color: var(--bg-paper);
+    border-color: var(--accent-sage); /* Sutil feedback visual en el borde */
 }
 
 /* ==========================================================================
@@ -37,11 +48,11 @@ table tbody tr:hover td {
    ========================================================================== */
 @media screen and (max-width: 768px) {
     table {
-        border-spacing: 0; /* Reseteamos el espaciado para la vista de tarjeta */
+        border-spacing: 0;
     }
 
     table thead {
-        display: none; /* Ocultamos los encabezados, los mostraremos en cada celda */
+        display: none;
     }
 
     table tr {
@@ -50,28 +61,213 @@ table tbody tr:hover td {
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-soft);
         background: var(--bg-card);
-        overflow: hidden; /* Clipa el contenido para respetar los bordes redondeados */
+        overflow: hidden;
+        border: 1px solid var(--bg-paper);
+        transition: border-color 0.3s ease;
     }
 
     table td {
         display: block;
-        text-align: right; /* Alineamos el contenido a la derecha */
+        text-align: right;
         padding: 1rem 1.5rem;
+        border-top: none;
+        border-left: none;
+        border-right: none;
         border-bottom: 1px solid var(--bg-paper);
+        border-radius: 0 !important;
     }
 
     table td::before {
-        content: attr(data-label); /* Usamos el atributo data-label como encabezado */
+        content: attr(data-label);
         float: left;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        text-transform: uppercase;
         font-weight: 600;
-        color: var(--text-carbon);
+        color: var(--secondary-color);
         text-align: left;
     }
 
     table td:last-of-type {
-        border-bottom: none; /* Elimina la línea divisoria del último elemento */
+        border-bottom: none;
     }
 
-    table tr td:first-child, table tr td:last-child { border-radius: 0; }
-    table tbody tr:hover td { transform: none; box-shadow: none; }
+    table tbody tr:hover td {
+        background-color: transparent;
+        border-color: var(--bg-paper);
+    }
+
+    table tbody tr:hover {
+        border-color: var(--accent-sage);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.hero {
+    width: min(1400px, 92%);
+    margin: auto;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.95;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 650px;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
+.hero-card,
+.feature-card,
+.structure-card,
+.timeline-item {
+    margin-top: 10px;
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    padding: 2rem;
+    transition: var(--transition-fluid);
+}
+
+.hero-card:hover,
+.feature-card:hover,
+.structure-card:hover,
+.timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-tag {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   SECCIONES
+   ========================================================================== */
+
+.section-block {
+    margin-top: 8rem;
+}
+
+.section-heading {
+    margin-bottom: 3rem;
+    max-width: 800px;
+}
+
+.section-heading h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.section-heading p {
+    color: var(--secondary-color);
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   GRIDS
+   ========================================================================== */
+
+.features-grid,
+.structure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card h3,
+.structure-card h3,
+.timeline-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   TIMELINE
+   ========================================================================== */
+
+.security-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media screen and (max-width: 900px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 3rem;
+    }
+
+    .section-block {
+        margin-top: 5rem;
+    }
+
 }

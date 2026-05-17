@@ -72,9 +72,9 @@ include '../../../../../includes/header.php';
         <textarea name="subtitle" placeholder="Breve explicación del contenido..."></textarea>
 
         <div class="buttons">
-            <button type="submit" name="subir">Guardar Material</button>
+            <button type="submit" name="subir" class="btn-primary">Guardar Material</button>
             <a href="../topic_details.php?id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>">
-                <button type="button" style="background:gray;">Cancelar</button>
+                <button type="button" class="btn">Cancelar</button>
             </a>
         </div>
     </form>

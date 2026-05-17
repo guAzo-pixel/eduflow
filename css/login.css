@@ -1,0 +1,87 @@
+/* Contenedor principal que simula el fondo de pantalla solo para el login */
+.login-screen {
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-sans);
+    margin: 0;
+}
+
+/* El formulario propiamente dicho */
+.login-screen .logprin {
+    background-color: var(--bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: var(--transition-fluid);
+}
+
+.login-screen .logprin:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* Título con la fuente Serif */
+.login-screen .logprin h2 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--text-carbon);
+    margin: 0 0 var(--spacing-sm) 0;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Inputs específicos del login */
+.login-screen .logprin input {
+    background-color: var(--bg-paper);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--text-carbon);
+    transition: var(--transition-fluid);
+    outline: none;
+}
+
+.login-screen .logprin input:focus {
+    border-color: var(--accent-sage);
+    background-color: var(--bg-surface);
+}
+
+/* Botón de acción */
+.login-screen .logprin button {
+    background-color: var(--text-carbon);
+    color: var(--bg-surface);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-fluid);
+    margin-top: var(--spacing-sm);
+}
+
+.login-screen .logprin button:hover {
+    background-color: var(--accent-terracotta);
+}
+
+/* Mensaje de error personalizado */
+.login-screen .error-msg {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--error);
+    text-align: center;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: rgba(193, 140, 125, 0.1);
+    border-radius: var(--radius-sm);
+}

@@ -36,12 +36,18 @@ if (isset($_POST['entrar'])){
         }
     }
 }
+include 'includes/header.php';
 ?>
-<form method="POST">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Contraseña" required>
-    <button type="submit" name="entrar">Entrar</button>
-</form>
+<div class="login-screen">
+    <form method="POST" class="logprin">
+        <h2>Bienvenido</h2>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit" name="entrar">Entrar</button>
+        
+        <?php if(isset($error)) echo "<p class='error-msg'>$error</p>"; ?>
+    </form>
+</div>
 
 
 <?php 

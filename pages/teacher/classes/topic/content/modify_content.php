@@ -53,8 +53,8 @@ include '../../../../../includes/header.php';
         <input type="text" name="name" value="<?php echo htmlspecialchars($content['name']); ?>" required>
         <label>Descripción:</label>
         <textarea name="subtitle"><?php echo htmlspecialchars($content['subtitle']); ?></textarea>
-        <button type="submit" name="modificar">Guardar</button>
-        <a href="../topic_details.php?id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>">Cancelar</a>
+        <button type="submit" name="modificar" class="btn-primary">Guardar</button>
+        <a href="../topic_details.php?id_class=<?php echo $id_class; ?>&id_topic=<?php echo $id_topic; ?>" class="btn">Cancelar</a>
     </form>
 </main>
 <?php include '../../../../../includes/footer.php'; ?>
