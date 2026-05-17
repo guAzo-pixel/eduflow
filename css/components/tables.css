@@ -173,6 +173,7 @@ table tbody tr:hover td {
 .feature-card,
 .structure-card,
 .timeline-item {
+    margin-top: 10px;
     background: var(--bg-card);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-soft);
